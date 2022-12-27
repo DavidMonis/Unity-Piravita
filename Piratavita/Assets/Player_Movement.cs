@@ -193,57 +193,62 @@ public class Player_Movement : MonoBehaviour
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.z = 0;
-                //mainisland
-                if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 1500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > 1000 &
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 1900 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 2500)
-                {
-                    target = new Vector3(2040, 1040, 0);
-                }
-                //island1
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
-                    Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2350 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2250) 
-                {
-                    target = new Vector3(-2270, -1500, 0);
-                }
-                //island2
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1570 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1670 &
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2435 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2335)
-                {
-                    target = new Vector3(-2360, -1620, 0);
-                }
-                //island3
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1600 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1700 &
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2600 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2500)
-                {
-                    target = new Vector3(-2530, -1650, 0);
-                }
-                //island4
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1310 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1410 &
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2420 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2320)
-                {
-                    target = new Vector3(-2330, -1360, 0);
-                }
-                //island5
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1460 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1560 &
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2660 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2560)
-                {
-                    target = new Vector3(-2570, -1510, 0);
-                }
-                //island6
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1280 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1380 &
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2580 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2480)
-                {
-                    target = new Vector3(-2500, -1330, 0);
-                }
-                //island7
-                else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2400)
-                {
-                    target = new Vector3(-2430, -1500, 0);
-                }
+                Debug.Log(target);
+                Special_Movement();
             }
         }
         boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, Boat_Force);
+    }
+    void Special_Movement() 
+    {
+        //mainisland
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 1500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > 1000 &
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 1900 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 2500)
+        {
+            target = new Vector3(2040, 1040, 0);
+        }
+        //island1
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
+            Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2350 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2250)
+        {
+            target = new Vector3(-2270, -1500, 0);
+        }
+        //island2
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1570 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1670 &
+        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2435 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2335)
+        {
+            target = new Vector3(-2360, -1620, 0);
+        }
+        //island3
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1600 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1700 &
+        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2600 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2500)
+        {
+            target = new Vector3(-2530, -1650, 0);
+        }
+        //island4
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1310 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1410 &
+        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2420 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2320)
+        {
+            target = new Vector3(-2330, -1360, 0);
+        }
+        //island5
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1460 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1560 &
+        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2660 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2560)
+        {
+            target = new Vector3(-2570, -1510, 0);
+        }
+        //island6
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1280 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1380 &
+        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2580 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2480)
+        {
+            target = new Vector3(-2500, -1330, 0);
+        }
+        //island7
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
+        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2400)
+        {
+            target = new Vector3(-2430, -1500, 0);
+        }
     }
     void Cam_Movement() 
     {
@@ -372,7 +377,7 @@ public class Player_Movement : MonoBehaviour
     }
     public void Basic_Fishing() 
     {
-        if(Actual_Capacity_t >= 0.0005)
+        if(Actual_Capacity_t >= 0.0005 )
         {
             Basic_Fish += 1;
             Actual_Capacity_t -= 0.0005;
