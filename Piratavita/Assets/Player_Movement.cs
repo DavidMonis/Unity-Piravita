@@ -15,11 +15,11 @@ public class Player_Movement : MonoBehaviour
     static public int Basic_Fish;
     static public int Special_Fish;
     //types
-    static public int Specia_Fish_1;
-    static public int Specia_Fish_2;
-    static public int Specia_Fish_3;
-    static public int Specia_Fish_4;
-    static public int Specia_Fish_5;
+    static public int Special_Fish_1;
+    static public int Special_Fish_2;
+    static public int Special_Fish_3;
+    static public int Special_Fish_4;
+    static public int Special_Fish_5;
 
     static public int Heavy_Fish;
     //types
@@ -212,6 +212,9 @@ public class Player_Movement : MonoBehaviour
         Button_Special_Fishing.SetActive(false);
         Button_Heavy_Fishing.SetActive(false);
         Button_Whale_Fishing.SetActive(false);
+        Inventory_Table.SetActive(false);
+        _Capacity.SetActive(false);
+        Show_Stuff_Bool = false;
     }
     public void Smaller_Cam()
     {
@@ -576,9 +579,28 @@ public class Player_Movement : MonoBehaviour
     {
         if (Actual_Capacity_t >= 0.001)
         {
+            if(Touching_Special1)
+            {
+                Special_Fish_1 += 1;
+            }
+            else if (Touching_Special2)
+            {
+                Special_Fish_2 += 1;
+            }
+            else if (Touching_Special3)
+            {
+                Special_Fish_3 += 1;
+            }
+            else if (Touching_Special4)
+            {
+                Special_Fish_4 += 1;
+            }
+            else if (Touching_Special5)
+            {
+                Special_Fish_5 += 1;
+            }
             Special_Fish += 1;
             Actual_Capacity_t -= 0.001;
-
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString("N3") + "/" + Max_Capacity_t.ToString() + " t";
         }
     }
@@ -586,6 +608,26 @@ public class Player_Movement : MonoBehaviour
     {
         if (Actual_Capacity_t >= 1)
         {
+            if (Touching_Heavy1)
+            {
+                Heavy_Fish_1 += 1;
+            }
+            else if (Touching_Heavy2)
+            {
+                Heavy_Fish_2 += 1;
+            }
+            else if (Touching_Heavy3)
+            {
+                Heavy_Fish_3 += 1;
+            }
+            else if (Touching_Heavy4)
+            {
+                Heavy_Fish_4 += 1;
+            }
+            else if (Touching_Heavy5)
+            {
+                Heavy_Fish_5 += 1;
+            }
             Heavy_Fish += 1;
             Actual_Capacity_t -= 1;
 
@@ -596,6 +638,18 @@ public class Player_Movement : MonoBehaviour
     {
         if (Actual_Capacity_t >= 25)
         {
+            if (Touching_Whale1)
+            {
+                Whale_Fish_1 += 1;
+            }
+            else if (Touching_Whale2)
+            {
+                Whale_Fish_2 += 1;
+            }
+            else if (Touching_Whale3)
+            {
+                Whale_Fish_3 += 1;
+            }
             Whale_Fish += 1;
             Actual_Capacity_t -= 25;
 
@@ -640,6 +694,26 @@ public class Player_Movement : MonoBehaviour
             Inventory_Table.SetActive(true);
             _Capacity.SetActive(true);
             Show_Stuff_Bool = true;
+
+            Debug.Log("Basic fish: "+Basic_Fish);
+            Debug.Log("Special fish: "+Special_Fish);
+            Debug.Log("Special fish1: " + Special_Fish_1);
+            Debug.Log("Special fish2: " + Special_Fish_2);
+            Debug.Log("Special fish3: " + Special_Fish_3);
+            Debug.Log("Special fish4: " + Special_Fish_4);
+            Debug.Log("Special fish5: " + Special_Fish_5);
+
+            Debug.Log("Heavy fish: " + Heavy_Fish);
+            Debug.Log("Heavy fish1: " + Heavy_Fish_1);
+            Debug.Log("Heavy fish2: " + Heavy_Fish_2);
+            Debug.Log("Heavy fish3: " + Heavy_Fish_3);
+            Debug.Log("Heavy fish4: " + Heavy_Fish_4);
+            Debug.Log("Heavy fish5: " + Heavy_Fish_5);
+
+            Debug.Log("Whale fish: " + Whale_Fish);
+            Debug.Log("Whale fish1: " + Whale_Fish_1);
+            Debug.Log("Whale fish2: " + Whale_Fish_2);
+            Debug.Log("Whale fish3: " + Whale_Fish_3);
         }
         else if (Show_Stuff_Bool)
         {
@@ -658,6 +732,21 @@ public class Player_Movement : MonoBehaviour
         {
             Button_Special_Fishing.SetActive(false);
         }
-
+        if (Boat_Level > 1 & Touching_Heavy & Bigger_Camera == false)
+        {
+            Button_Heavy_Fishing.SetActive(true);
+        }
+        else
+        {
+            Button_Heavy_Fishing.SetActive(false);
+        }
+        if (Boat_Level > 2 & Touching_Whale & Bigger_Camera == false)
+        {
+            Button_Whale_Fishing.SetActive(true);
+        }
+        else
+        {
+            Button_Whale_Fishing.SetActive(false);
+        }
     }
 }
