@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Special1
+  - Special2
+  - Special3
+  - Special4
+  - Special5
+  - Heavy1
+  - Heavy2
+  - Heavy3
+  - Heavy4
+  - Heavy5
+  - Whale1
+  - Whale2
+  - Whale3
   layers:
   - Default
   - TransparentFX

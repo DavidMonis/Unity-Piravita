@@ -12,24 +12,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_Island.unity
     guid: 038f2c2073a058c4fbcad2d2ce2a8343
   - enabled: 1
-    path: Assets/Scenes/Island1.unity
-    guid: 6c2f5f523a3c1014ab53a5c7a03caf0d
+    path: Assets/Scenes/Island 1.unity
+    guid: 7471f1ab63ba65d4691d4027ed962dc7
   - enabled: 1
-    path: Assets/Scenes/Island2.unity
-    guid: f80f724df80f21347aeb379f2206789e
+    path: Assets/Scenes/Island 2.unity
+    guid: 1ee59ffe8d326e2438315dc5efe2c4f7
   - enabled: 1
-    path: Assets/Scenes/Island3.unity
-    guid: 650514e29feec3a4680c15022852506e
+    path: Assets/Scenes/Island 3.unity
+    guid: df86d2a34a851b142b9d135ed85c2618
   - enabled: 1
-    path: Assets/Scenes/Island4.unity
-    guid: c5e26499db5e8144b9847bae226c4d86
+    path: Assets/Scenes/Island 4.unity
+    guid: e4ae81918b81708488cc6b08bc97ae61
   - enabled: 1
-    path: Assets/Scenes/Island5.unity
-    guid: debc7e6bb61e76145b324db8ab7b7c17
+    path: Assets/Scenes/Island 5.unity
+    guid: 5833ac582895d504f819f1e65c58e589
   - enabled: 1
-    path: Assets/Scenes/Island6.unity
-    guid: 01e2309253d9c7d4aac735698b35bfbb
+    path: Assets/Scenes/Island 6.unity
+    guid: 512ed50f284b1f3458cd2ccf3f4e94d2
   - enabled: 1
-    path: Assets/Scenes/Island7.unity
-    guid: bc0e8ecbf622aae40ad0848d81d2d3ca
+    path: Assets/Scenes/Island 7.unity
+    guid: 5aaad8800568815468e21fd2287948c3
   m_configObjects: {}

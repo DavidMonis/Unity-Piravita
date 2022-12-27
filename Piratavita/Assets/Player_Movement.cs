@@ -11,10 +11,29 @@ public class Player_Movement : MonoBehaviour
     static public int Boat_Level = 10;
     static public int Max_Capacity_t = 100;
     static public double Actual_Capacity_t = 100;
+    static public int Food_On_Day = 100;
     static public int Basic_Fish;
     static public int Special_Fish;
+    //types
+    static public int Specia_Fish_1;
+    static public int Specia_Fish_2;
+    static public int Specia_Fish_3;
+    static public int Specia_Fish_4;
+    static public int Specia_Fish_5;
+
     static public int Heavy_Fish;
+    //types
+    static public int Heavy_Fish_1;
+    static public int Heavy_Fish_2;
+    static public int Heavy_Fish_3;
+    static public int Heavy_Fish_4;
+    static public int Heavy_Fish_5;
+
     static public int Whale_Fish;
+    //types
+    static public int Whale_Fish_1;
+    static public int Whale_Fish_2;
+    static public int Whale_Fish_3;
 
     private float force = 10;
     private GameObject boat;
@@ -27,13 +46,15 @@ public class Player_Movement : MonoBehaviour
     GameObject Button_Special_Fishing;
     GameObject Button_Heavy_Fishing;
     GameObject Button_Whale_Fishing;
+    GameObject Inventory_Button;
+    GameObject Inventory_Table;
 
     GameObject Leave_Island_Button;
     private GameObject Button_Market;
     private GameObject Button_Jobs;
     GameObject Market_Menu;
     GameObject Jobs_Menu;
-    bool Show_Stuff_Bool=false;
+    bool Show_Stuff_Bool;
 
     GameObject Constant_Money;
     GameObject Constant_Level;
@@ -49,6 +70,14 @@ public class Player_Movement : MonoBehaviour
 
     bool Standing_On_Market;
     bool Standing_On_Job;
+
+    bool Touching_Special;
+    bool Touching_Special1;
+    bool Touching_Special2;
+    bool Touching_Special3;
+    bool Touching_Special4;
+    bool Touching_Special5;
+
     void Start()
     {
 
@@ -59,7 +88,8 @@ public class Player_Movement : MonoBehaviour
         //sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            _Capacity = GameObject.Find("/Canvas/Konstnant/Capacity");
+            Show_Stuff_Bool = false;
+            _Capacity = GameObject.Find("/Canvas/Capacity");
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
             cam = GameObject.Find("Cam");
             boat = GameObject.Find("Boat");
@@ -70,6 +100,8 @@ public class Player_Movement : MonoBehaviour
             Button_Special_Fishing = GameObject.Find("/Canvas/Fish lvl 2");
             Button_Heavy_Fishing = GameObject.Find("/Canvas/Fish lvl 3");
             Button_Whale_Fishing = GameObject.Find("/Canvas/Fish lvl 4");
+            Inventory_Button = GameObject.Find("/Canvas/Inventory");
+            Inventory_Table = GameObject.Find("/Canvas/Inventory table");
 
             target = boat.GetComponent<Transform>().position;
             Button_Boat.SetActive(false);
@@ -78,10 +110,13 @@ public class Player_Movement : MonoBehaviour
             Button_Heavy_Fishing.SetActive(false);
             Button_Special_Fishing.SetActive(false);
             Button_Whale_Fishing.SetActive(false);
+            _Capacity.SetActive(false);
+            Inventory_Table.SetActive(false);
         }
         //Main island
         if (SceneManager.GetActiveScene().buildIndex >= 1) 
         {
+            Show_Stuff_Bool = false;
             cam = GameObject.Find("Cam");
             Button_Market = GameObject.Find("/Canvas/Market_Button");
             Button_Jobs = GameObject.Find("/Canvas/Jobs_Button");
@@ -125,6 +160,7 @@ public class Player_Movement : MonoBehaviour
             Boat_Movement();
             Cam_Movement();
             Control_Position();
+            Touching_Special_Area();
         }
         //movement on Main Island
         if (SceneManager.GetActiveScene().buildIndex >= 1)
@@ -157,11 +193,12 @@ public class Player_Movement : MonoBehaviour
         Bigger_Camera = true;
         Button_Map.SetActive(false);
         Button_Boat.SetActive(true);
+        Inventory_Button.SetActive(false);
         cam.transform.position = new Vector3(0, 0, -10);
 
         Button_Basic_Fishing.SetActive(false);
-        Button_Heavy_Fishing.SetActive(false);
         Button_Special_Fishing.SetActive(false);
+        Button_Heavy_Fishing.SetActive(false);
         Button_Whale_Fishing.SetActive(false);
     }
     public void Smaller_Cam()
@@ -170,20 +207,10 @@ public class Player_Movement : MonoBehaviour
         Bigger_Camera = false;
         Button_Map.SetActive(true);
         Button_Boat.SetActive(false);
+        Inventory_Button.SetActive(true);
 
         Button_Basic_Fishing.SetActive(true);
-        if (Boat_Level > 0)
-        {
-            Button_Special_Fishing.SetActive(true);
-        }
-        if (Boat_Level > 1)
-        {
-            Button_Heavy_Fishing.SetActive(true);
-        }
-        if (Boat_Level > 2)
-        {
-            Button_Whale_Fishing.SetActive(true);
-        }
+
     }
     void Boat_Movement() 
     {
@@ -318,31 +345,93 @@ public class Player_Movement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "Market") 
+        if (SceneManager.GetActiveScene().buildIndex >= 1) 
         {
-            Standing_On_Market = true;
-            Button_Market.SetActive(true);
-
+            if (collision.name == "Market")
+            {
+                Standing_On_Market = true;
+                Button_Market.SetActive(true);
+            }
+            if (collision.name == "Jobs")
+            {
+                Standing_On_Job = true;
+                Button_Jobs.SetActive(true);
+            }
         }
-        if (collision.name == "Jobs")
+
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            Standing_On_Job = true;
-            Button_Jobs.SetActive(true);
+            if (collision.tag == "Special1")
+            {
+                Touching_Special1 = true;
+                Touching_Special = true;
+            }
+            else if(collision.tag == "Special2")
+            {
+                Touching_Special = true;
+                Touching_Special2 = true;
+            }
+            else if(collision.tag == "Special3")
+            {
+                Touching_Special = true;
+                Touching_Special3 = true;
+            }
+            else if(collision.tag == "Special4")
+            {
+                Touching_Special = true;
+                Touching_Special4 = true;
+            }
+            else if(collision.tag == "Special5")
+            {
+                Touching_Special = true;
+                Touching_Special5 = true;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.name == "Market")
+        if (SceneManager.GetActiveScene().buildIndex >= 0)
         {
-            Standing_On_Market = false;
-            Button_Market.SetActive(false);
-            Market_Menu.SetActive(false);
+            if (collision.name == "Market")
+            {
+                Standing_On_Market = false;
+                Button_Market.SetActive(false);
+                Market_Menu.SetActive(false);
+            }
+            if (collision.name == "Jobs")
+            {
+                Standing_On_Job = false;
+                Button_Jobs.SetActive(false);
+                Jobs_Menu.SetActive(false);
+            }
         }
-        if (collision.name == "Jobs")
+        if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            Standing_On_Job = false;
-            Button_Jobs.SetActive(false);
-            Jobs_Menu.SetActive(false);
+            if (collision.tag == "Special1")
+            {
+                Touching_Special = false;
+                Touching_Special1 = false;
+            }
+            else if (collision.tag == "Special2")
+            {
+                Touching_Special = false;
+                Touching_Special2 = false;
+            }
+            else if(collision.tag == "Special3")
+            {
+                Touching_Special = false;
+                Touching_Special3 = false;
+            }
+            else if(collision.tag == "Special4")
+            {
+                Touching_Special = false;
+                Touching_Special4 = false;
+            }
+            else if(collision.tag == "Special5")
+            {
+                Touching_Special = false;
+                Touching_Special5 = false;
+            }
         }
     }
     public void Show_Stuff() 
@@ -443,6 +532,28 @@ public class Player_Movement : MonoBehaviour
         else 
         {
             Leave_Island_Button.SetActive(false);
+        }
+    }
+    public void Opening_Inventory() 
+    {
+        if(Show_Stuff_Bool == false) 
+        {
+            Inventory_Table.SetActive(true);
+            _Capacity.SetActive(true);
+            Show_Stuff_Bool = true;
+        }
+        else if (Show_Stuff_Bool)
+        {
+            Inventory_Table.SetActive(false);
+            _Capacity.SetActive(false);
+            Show_Stuff_Bool = false;
+        }
+    }
+    void Touching_Special_Area() 
+    {
+        if (Boat_Level > 0 & Touching_Special & Bigger_Camera == false)
+        {
+            Button_Special_Fishing.SetActive(true);
         }
     }
 }
