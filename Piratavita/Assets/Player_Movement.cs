@@ -4,10 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+public class Main_Island
+{
+
+}
 public class Island1
 {
 
 }
+public class Island2
+{
+
+}
+public class Island3
+{
+
+}
+public class Island4
+{
+
+}
+public class Island5
+{
+
+}
+public class Island6
+{
+
+}
+public class Island7
+{
+
+}
+
 
 public class Player_Movement : MonoBehaviour
 {
@@ -56,8 +85,6 @@ public class Player_Movement : MonoBehaviour
     GameObject Leave_Island_Button;
     private GameObject Button_Market;
     GameObject Button_Market2;
-    private GameObject Button_Jobs;
-    GameObject Button_Jobs2;
     GameObject Market_Menu;
     bool Show_Stuff_Bool;
     GameObject Food_Stuff;
@@ -68,6 +95,7 @@ public class Player_Movement : MonoBehaviour
     GameObject Constant_Level;
     GameObject _Capacity;
     GameObject Constant_Time;
+    GameObject Day;
     static float _Time;
     static int Time_Hour = 0;
     static int Time_Day = 0;
@@ -77,7 +105,6 @@ public class Player_Movement : MonoBehaviour
     private int Scene_Number = 0;
 
     bool Standing_On_Market;
-    bool Standing_On_Job;
 
     bool Touching_Special;
     bool Touching_Special1;
@@ -104,6 +131,7 @@ public class Player_Movement : MonoBehaviour
         Constant_Money = GameObject.Find("/Canvas/Konstnant/Money");
         Constant_Level = GameObject.Find("/Canvas/Konstnant/Level");
         Constant_Time = GameObject.Find("/Canvas/Konstnant/Time");
+        Day = GameObject.Find("/Canvas/Konstnant/Day");
         Add_Constanst();
         //sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -140,8 +168,6 @@ public class Player_Movement : MonoBehaviour
             cam = GameObject.Find("Cam");
             Button_Market = GameObject.Find("/Canvas/Market_Button");
             Button_Market2 = GameObject.Find("/Canvas/Market_Button2");
-            Button_Jobs = GameObject.Find("/Canvas/Jobs_Button");
-            Button_Jobs2 = GameObject.Find("/Canvas/Jobs_Button2");
             Market_Menu = GameObject.Find("/Canvas/MarketText");
             Leave_Island_Button = GameObject.Find("/Canvas/Leave_Island");
             Food_Stuff = GameObject.Find("/Canvas/MarketText/Food");
@@ -150,10 +176,8 @@ public class Player_Movement : MonoBehaviour
 
             Leave_Island_Button.SetActive(false);
             Button_Market.SetActive(false);
-            Button_Jobs.SetActive(false);
             Market_Menu.SetActive(false);
             Button_Market2.SetActive(false);
-            Button_Jobs2.SetActive(false);
         }
         
     }
@@ -380,11 +404,7 @@ public class Player_Movement : MonoBehaviour
                 Standing_On_Market = true;
                 Button_Market.SetActive(true);
             }
-            if (collision.name == "Jobs")
-            {
-                Standing_On_Job = true;
-                Button_Jobs.SetActive(true);
-            }
+
         }
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -471,12 +491,7 @@ public class Player_Movement : MonoBehaviour
                 Market_Menu.SetActive(false);
                 Button_Market2.SetActive(false);
             }
-            if (collision.name == "Jobs")
-            {
-                Standing_On_Job = false;
-                Button_Jobs.SetActive(false);
-                Button_Jobs2.SetActive(false);
-            }
+
         }
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -658,6 +673,7 @@ public class Player_Movement : MonoBehaviour
             {
                 Time_Hour = 0;
                 Time_Day += 1;
+                Day.GetComponent<Text>().text = Day.GetComponent<Text>().text + " " + Time_Day.ToString();
             }
             Constant_Time.GetComponent<Text>().text = Time_Hour + ":00";
         }
@@ -759,11 +775,7 @@ public class Player_Movement : MonoBehaviour
             Weapons_Stuff.SetActive(false);
             Materials_Stuff.SetActive(false);
         }
-        else if (Standing_On_Job)
-        {
-            Button_Jobs.SetActive(false);
-            Button_Jobs2.SetActive(true);
-        }
+
 
     }
     public void Hide_Stuff() 
@@ -777,11 +789,7 @@ public class Player_Movement : MonoBehaviour
             Constant_Time.SetActive(true);
             Constant_Money.SetActive(true);
         }
-        else if (Standing_On_Job)
-        {
-            Button_Jobs.SetActive(true);
-            Button_Jobs2.SetActive(false);
-        }
+
     }
     public void Food_Button() 
     {
