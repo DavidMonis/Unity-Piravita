@@ -193,13 +193,12 @@ public class Player_Movement : MonoBehaviour
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.z = 0;
-                Debug.Log(target);
-                Special_Movement();
+                Special_Boat_Movement();
             }
         }
         boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, Boat_Force);
     }
-    void Special_Movement() 
+    void Special_Boat_Movement() 
     {
         //mainisland
         if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 1500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > 1000 &
