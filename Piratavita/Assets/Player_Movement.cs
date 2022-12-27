@@ -78,6 +78,18 @@ public class Player_Movement : MonoBehaviour
     bool Touching_Special4;
     bool Touching_Special5;
 
+    bool Touching_Heavy;
+    bool Touching_Heavy1;
+    bool Touching_Heavy2;
+    bool Touching_Heavy3;
+    bool Touching_Heavy4;
+    bool Touching_Heavy5;
+
+    bool Touching_Whale;
+    bool Touching_Whale1;
+    bool Touching_Whale2;
+    bool Touching_Whale3;
+
     void Start()
     {
 
@@ -361,6 +373,7 @@ public class Player_Movement : MonoBehaviour
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            //special fish
             if (collision.tag == "Special1")
             {
                 Touching_Special1 = true;
@@ -386,6 +399,49 @@ public class Player_Movement : MonoBehaviour
                 Touching_Special = true;
                 Touching_Special5 = true;
             }
+            //heavy fish
+            if (collision.tag == "Heavy1")
+            {
+                Touching_Heavy1 = true;
+                Touching_Heavy = true;
+            }
+            else if (collision.tag == "Heavy2")
+            {
+                Touching_Heavy = true;
+                Touching_Heavy2 = true;
+            }
+            else if (collision.tag == "Heavy3")
+            {
+                Touching_Heavy = true;
+                Touching_Heavy3 = true;
+            }
+            else if (collision.tag == "Heavy4")
+            {
+                Touching_Heavy = true;
+                Touching_Heavy4 = true;
+            }
+            else if (collision.tag == "Heavy5")
+            {
+                Touching_Heavy = true;
+                Touching_Heavy5 = true;
+            }
+            //whale fish
+            if (collision.tag == "Whale1")
+            {
+                Touching_Whale1 = true;
+                Touching_Whale = true;
+            }
+            else if (collision.tag == "Whale2")
+            {
+                Touching_Whale = true;
+                Touching_Whale2 = true;
+            }
+            else if (collision.tag == "Whale3")
+            {
+                Touching_Whale = true;
+                Touching_Whale3 = true;
+            }
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -407,6 +463,7 @@ public class Player_Movement : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            //special fish
             if (collision.tag == "Special1")
             {
                 Touching_Special = false;
@@ -431,6 +488,48 @@ public class Player_Movement : MonoBehaviour
             {
                 Touching_Special = false;
                 Touching_Special5 = false;
+            }
+            //heavy fish
+            if (collision.tag == "Heavy1")
+            {
+                Touching_Heavy1 = false;
+                Touching_Heavy = false;
+            }
+            else if (collision.tag == "Heavy2")
+            {
+                Touching_Heavy = false;
+                Touching_Heavy2 = false;
+            }
+            else if (collision.tag == "Heavy3")
+            {
+                Touching_Heavy = false;
+                Touching_Heavy3 = false;
+            }
+            else if (collision.tag == "Heavy4")
+            {
+                Touching_Heavy = false;
+                Touching_Heavy4 = false;
+            }
+            else if (collision.tag == "Heavy5")
+            {
+                Touching_Heavy = false;
+                Touching_Heavy5 = false;
+            }
+            //whale fish
+            if (collision.tag == "Whale1")
+            {
+                Touching_Whale1 = false;
+                Touching_Whale = false;
+            }
+            else if (collision.tag == "Whale2")
+            {
+                Touching_Whale = false;
+                Touching_Whale2 = false;
+            }
+            else if (collision.tag == "Whale3")
+            {
+                Touching_Whale = false;
+                Touching_Whale3 = false;
             }
         }
     }
@@ -555,5 +654,10 @@ public class Player_Movement : MonoBehaviour
         {
             Button_Special_Fishing.SetActive(true);
         }
+        else
+        {
+            Button_Special_Fishing.SetActive(false);
+        }
+
     }
 }
