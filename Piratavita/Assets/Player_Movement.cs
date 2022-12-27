@@ -51,10 +51,14 @@ public class Player_Movement : MonoBehaviour
 
     GameObject Leave_Island_Button;
     private GameObject Button_Market;
+    GameObject Button_Market2;
     private GameObject Button_Jobs;
     GameObject Market_Menu;
     GameObject Jobs_Menu;
     bool Show_Stuff_Bool;
+    GameObject Food_Stuff;
+    GameObject Weapons_Stuff;
+    GameObject Materials_Stuff;
 
     GameObject Constant_Money;
     GameObject Constant_Level;
@@ -114,6 +118,9 @@ public class Player_Movement : MonoBehaviour
             Button_Whale_Fishing = GameObject.Find("/Canvas/Fish lvl 4");
             Inventory_Button = GameObject.Find("/Canvas/Inventory");
             Inventory_Table = GameObject.Find("/Canvas/Inventory table");
+            Food_Stuff = GameObject.Find("/Canvas/MarketText/Food");
+            Weapons_Stuff = GameObject.Find("/Canvas/MarketText/Weapons");
+            Materials_Stuff = GameObject.Find("/Canvas/MarketText/Materials");
 
             target = boat.GetComponent<Transform>().position;
             Button_Boat.SetActive(false);
@@ -131,6 +138,7 @@ public class Player_Movement : MonoBehaviour
             Show_Stuff_Bool = false;
             cam = GameObject.Find("Cam");
             Button_Market = GameObject.Find("/Canvas/Market_Button");
+            Button_Market2 = GameObject.Find("/Canvas/Market_Button2");
             Button_Jobs = GameObject.Find("/Canvas/Jobs_Button");
             Market_Menu = GameObject.Find("/Canvas/MarketText");
             Jobs_Menu = GameObject.Find("/Canvas/JobsText");
@@ -141,6 +149,7 @@ public class Player_Movement : MonoBehaviour
             Button_Jobs.SetActive(false);
             Market_Menu.SetActive(false);
             Jobs_Menu.SetActive(false);
+            Button_Market2.SetActive(false);
         }
         
     }
@@ -536,29 +545,6 @@ public class Player_Movement : MonoBehaviour
             }
         }
     }
-    public void Show_Stuff() 
-    {
-        if (Standing_On_Market&Show_Stuff_Bool == false) 
-        {
-            Market_Menu.SetActive(true);
-            Show_Stuff_Bool = true;
-        }
-        else if (Standing_On_Job & Show_Stuff_Bool == false)
-        {
-            Jobs_Menu.SetActive(true);
-            Show_Stuff_Bool = true ;
-        }
-        else if (Standing_On_Market&Show_Stuff_Bool)
-        {
-            Market_Menu.SetActive(false);
-            Show_Stuff_Bool = false;
-        }
-        else if (Standing_On_Job & Show_Stuff_Bool)
-        {
-            Jobs_Menu.SetActive(false);
-            Show_Stuff_Bool = false;
-        }
-    }
     void Add_Constanst() 
     {
         Constant_Money.GetComponent<Text>().text = Money.ToString()+ " coins";
@@ -747,6 +733,48 @@ public class Player_Movement : MonoBehaviour
         else
         {
             Button_Whale_Fishing.SetActive(false);
+        }
+    }
+
+
+
+
+    //island
+    public void Show_Stuff()
+    {
+        if (Standing_On_Market)
+        {
+            Market_Menu.SetActive(true);
+            Button_Market2.SetActive(true);
+            Button_Market.SetActive(false);
+            Constant_Level.SetActive(false);
+            Constant_Time.SetActive(false);
+            Constant_Money.SetActive(false);
+            Food_Stuff.SetActive(false);
+            Weapons_Stuff.SetActive(false);
+            Materials_Stuff.SetActive(false);
+        }
+        else if (Standing_On_Job)
+        {
+            Jobs_Menu.SetActive(true);
+            Show_Stuff_Bool = true;
+        }
+
+    }
+    public void Hide_Stuff() 
+    {
+        if (Standing_On_Market)
+        {
+            Market_Menu.SetActive(false);
+            Button_Market2.SetActive(false);
+            Button_Market.SetActive(true);
+            Constant_Level.SetActive(true);
+            Constant_Time.SetActive(true);
+            Constant_Money.SetActive(true);
+        }
+        else if (Standing_On_Job)
+        {
+            Jobs_Menu.SetActive(false);
         }
     }
 }
