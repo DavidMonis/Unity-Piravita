@@ -310,7 +310,7 @@ public class Island7
 
 public class Player_Movement : MonoBehaviour
 {
-    private float Boat_Force = 0.05F;
+    private float Boat_Force = 0.001F;
     private float force = 10;
     static public float Money = 0;
     static public int Boat_Level = 0;
@@ -487,7 +487,11 @@ public class Player_Movement : MonoBehaviour
     GameObject Lvl6_Button;
     GameObject Lvl7_Button;
 
+    GameObject SpeedTravel_Button;
+
     public static bool random = true;
+    bool random1= false;
+    int Time_Element = 1;
     void Hack_Mode() 
     {
         Money = 9000000;
@@ -504,7 +508,6 @@ public class Player_Movement : MonoBehaviour
             PlayerPrefs.SetFloat("Position_Y", 0);
             random = false;
         }
-        Hack_Mode();
         //lvl1, island 5
         if (SceneManager.GetActiveScene().buildIndex == 6)
         {
@@ -559,6 +562,7 @@ public class Player_Movement : MonoBehaviour
         //sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            SpeedTravel_Button = GameObject.Find("/Canvas/SpeedTravel");
             Inventory_Button = GameObject.Find("/Canvas/Inventory");
             Inventory_Table = GameObject.Find("/Canvas/Inventory table");
             Inventory_Table.SetActive(false);
@@ -576,6 +580,7 @@ public class Player_Movement : MonoBehaviour
 
             target = boat.GetComponent<Transform>().position;
             Button_Boat.SetActive(false);
+            SpeedTravel_Button.SetActive(false);
             Button_Main_Island.SetActive(false);
             Button_Basic_Fishing.SetActive(false);
             Button_Heavy_Fishing.SetActive(false);
@@ -734,6 +739,7 @@ public class Player_Movement : MonoBehaviour
         Inventory_Table.SetActive(false);
         _Capacity.SetActive(false);
         Show_Stuff_Bool = false;
+        SpeedTravel_Button.SetActive(true);
     }
     public void Smaller_Cam()
     {
@@ -742,7 +748,7 @@ public class Player_Movement : MonoBehaviour
         Button_Map.SetActive(true);
         Button_Boat.SetActive(false);
         Inventory_Button.SetActive(true);
-
+        SpeedTravel_Button.SetActive(false);
         Button_Basic_Fishing.SetActive(true);
 
     }
@@ -1144,7 +1150,7 @@ public class Player_Movement : MonoBehaviour
     }
     public void Time_()
     {
-        _Time += Time.deltaTime;
+        _Time += Time.deltaTime * Time_Element;
         if (_Time >= 60)
         {
             Time_Hour += 1;
@@ -1153,7 +1159,7 @@ public class Player_Movement : MonoBehaviour
             {
                 Time_Hour = 0;
                 Time_Day += 1;
-                Day.GetComponent<Text>().text = Day.GetComponent<Text>().text + " " + Time_Day.ToString();
+                Day.GetComponent<Text>().text ="Day " + Time_Day.ToString();
             }
             Constant_Time.GetComponent<Text>().text = Time_Hour + ":00";
         }
@@ -2966,5 +2972,20 @@ public class Player_Movement : MonoBehaviour
         }
         Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
+    }
+    public void Speed_Travel() 
+    {
+        if(random1 == false)
+        {
+            Time_Element = Time_Element*500;
+            Boat_Force = Boat_Force * 500;
+            random1 = true;
+        }
+        else if (random1)
+        {
+            Time_Element = Time_Element / 500;
+            Boat_Force = Boat_Force / 500;
+            random1 = false;
+        }
     }
 }
