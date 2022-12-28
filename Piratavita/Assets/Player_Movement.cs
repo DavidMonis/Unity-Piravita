@@ -316,7 +316,7 @@ public class Player_Movement : MonoBehaviour
     static public int Boat_Level = 0;
     static public int Max_Capacity_t = 1;
     static public double Actual_Capacity_t = 0;
-    static public int Food_On_Day = 0;
+    static public int Food_On_Day = 10;
     static public int Basic_Fish;
     //types
     static public int Special_Fish1;
@@ -499,6 +499,8 @@ public class Player_Movement : MonoBehaviour
     bool Standing_On_Pub;
     public bool Taking_Poeple;
     public double Different;
+
+    GameObject Food_On_day_Text;
     void Hack_Mode() 
     {
         Money = 9000000;
@@ -506,6 +508,8 @@ public class Player_Movement : MonoBehaviour
         Food_On_Day = 1000;
         Boat_Level = 10;
         Boat_Force = 5;
+        Food_On_Day = 1000;
+        force = 50;
     }
     void Start()
     {
@@ -572,6 +576,7 @@ public class Player_Movement : MonoBehaviour
         Constant_Time = GameObject.Find("/Canvas/Konstnant/Time");
         Day = GameObject.Find("/Canvas/Konstnant/Day");
         _Capacity = GameObject.Find("/Canvas/Konstnant/Capacity");
+        Food_On_day_Text = GameObject.Find("/Canvas/Konstnant/Food_On_Day");
         _Capacity.SetActive(false);
         Add_Constanst();
         Set_Inventory();
@@ -1087,6 +1092,7 @@ public class Player_Movement : MonoBehaviour
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
         Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
         Constant_Time.GetComponent<Text>().text = Time_Hour + ":00";
+        Food_On_day_Text.GetComponent<Text>().text = Food_On_Day+ " Food On Day";
     }
     public void Basic_Fishing()
     {
@@ -1186,7 +1192,9 @@ public class Player_Movement : MonoBehaviour
             {
                 Time_Hour = 0;
                 Time_Day += 1;
+                Food_On_Day -= 1;
                 Day.GetComponent<Text>().text ="Day " + Time_Day.ToString();
+                Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
             }
             Constant_Time.GetComponent<Text>().text = Time_Hour + ":00";
         }
@@ -3008,14 +3016,14 @@ public class Player_Movement : MonoBehaviour
     {
         if(random1 == false)
         {
-            Time_Element = Time_Element*500;
-            Boat_Force = Boat_Force * 500;
+            Time_Element = Time_Element*200;
+            Boat_Force = Boat_Force * 200;
             random1 = true;
         }
         else if (random1)
         {
-            Time_Element = Time_Element / 500;
-            Boat_Force = Boat_Force / 500;
+            Time_Element = Time_Element / 200;
+            Boat_Force = Boat_Force / 200;
             random1 = false;
         }
     }
@@ -3048,13 +3056,19 @@ public class Player_Movement : MonoBehaviour
     {
         if (Boat_Level > 5 & Taking_Poeple == false)
         {
-        Debug.Log(System.Convert.ToInt32(Different));
-        Money += System.Convert.ToInt32(Different) * 1000;
-        Different = 0;
-        Taking_Poeple = false;
-        Changing_Capacity();
-        _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
-        Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
+            Debug.Log((int)Different);
+            Money += (int)Different * 1000;
+            Different = 0;
+            Taking_Poeple = false;
+            Changing_Capacity();
+            _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
+            Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
         }
+    }
+    public void Food_On_Day_Action()
+    {
+        Food_On_Day += 1;
+        Money -= 10;
+        Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
     }
 }
