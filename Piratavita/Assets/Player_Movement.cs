@@ -491,7 +491,14 @@ public class Player_Movement : MonoBehaviour
 
     public static bool random = true;
     bool random1= false;
+    bool random2= false;
     int Time_Element = 1;
+
+    GameObject Button_Pub;
+    GameObject Panel_Pub;
+    bool Standing_On_Pub;
+    public bool Taking_Poeple;
+    public double Different;
     void Hack_Mode() 
     {
         Money = 9000000;
@@ -502,6 +509,7 @@ public class Player_Movement : MonoBehaviour
     }
     void Start()
     {
+        Hack_Mode();
         if (random)
         {
             PlayerPrefs.SetFloat("Position_X", 0);
@@ -543,12 +551,20 @@ public class Player_Movement : MonoBehaviour
         {
             Lvl6_Button = GameObject.Find("/Canvas/BoatLevel");
             Lvl6_Button.SetActive(false);
+            Button_Pub = GameObject.Find("/Canvas/Pub_Button");
+            Panel_Pub = GameObject.Find("/Canvas/Pub_Panel");
+            Button_Pub.SetActive(false);
+            Panel_Pub.SetActive(false);
         }
         //lvl7, main island
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             Lvl7_Button = GameObject.Find("/Canvas/BoatLevel");
             Lvl7_Button.SetActive(false);
+            Button_Pub = GameObject.Find("/Canvas/Pub_Button");
+            Panel_Pub = GameObject.Find("/Canvas/Pub_Panel");
+            Button_Pub.SetActive(false);
+            Panel_Pub.SetActive(false);
         }
 
         Constant_Money = GameObject.Find("/Canvas/Konstnant/Money");
@@ -894,6 +910,11 @@ public class Player_Movement : MonoBehaviour
                 Standing_On_Market = true;
                 Button_Market.SetActive(true);
             }
+            if (collision.name == "Pub")
+            {
+                Button_Pub.SetActive(true);
+                Standing_On_Pub = true;
+            }
 
         }
 
@@ -981,7 +1002,13 @@ public class Player_Movement : MonoBehaviour
                 Market_Menu.SetActive(false);
                 Button_Market2.SetActive(false);
             }
-
+            if (collision.name == "Pub")
+            {
+                Button_Pub.SetActive(false);
+                Panel_Pub.SetActive(false);
+                Standing_On_Pub = false;
+                random2 = false;
+            }
         }
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -1254,6 +1281,10 @@ public class Player_Movement : MonoBehaviour
         + (Fruit * 0.001F) + (Meat * 0.001F) + (Wheat * 0.001F) + (Alcohol * 0.001F) + (Gunpowder * 0.001F) + (Bullets * 0.001F) + (Cannon * 2F) + (Cannon_Ball * 0.020F) + (Pistol * 0.001F)
         + (Rifle * 0.004F) + (Dagger * 0.00025F) + (Knife * 0.0005F) + (Sword * 0.002F) + (Brick * 0.001F) + (Gravel * 0.001F) + (Wood * 0.001F) + (Iron * 0.001F) + (Gold * 0.001F)
         + (Bronze * 0.001F) + (Diamond * 0.001F) + (Rubin * 0.001F) + (Amethyst * 0.001F);
+        if (Taking_Poeple) 
+        {
+            Actual_Capacity_t = Max_Capacity_t;
+        }
         //váha canonu je 2t,váha gule je 20kg,vaha pistole je 1KG,vaha rifle je 4KG,váha dýky je 250G,váha noža je 0.5KG,váha jednoruèného meèa 2KG
     }
     void Touching_Special_Area()
@@ -2986,6 +3017,44 @@ public class Player_Movement : MonoBehaviour
             Time_Element = Time_Element / 500;
             Boat_Force = Boat_Force / 500;
             random1 = false;
+        }
+    }
+    public void Show_Pub() 
+    {
+        if (random2 == false&Standing_On_Pub) 
+        {
+            Panel_Pub.SetActive(true);
+            random2 = true;
+        }
+        else if (random2&Standing_On_Pub)
+        {
+            Panel_Pub.SetActive(false);
+            random2 = false;
+        }
+
+    }
+    public void Take_Poeple_On_Boat() 
+    {
+        if (Boat_Level > 5 & Taking_Poeple == false) 
+        {
+            Different = Max_Capacity_t - Actual_Capacity_t;
+            Taking_Poeple = true;
+            Changing_Capacity();
+            _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
+            Debug.Log(Different);
+        }
+    }
+    public void Give_Poeple_On_Main_Island()
+    {
+        if (Boat_Level > 5 & Taking_Poeple == false)
+        {
+        Debug.Log(System.Convert.ToInt32(Different));
+        Money += System.Convert.ToInt32(Different) * 1000;
+        Different = 0;
+        Taking_Poeple = false;
+        Changing_Capacity();
+        _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
+        Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
         }
     }
 }
