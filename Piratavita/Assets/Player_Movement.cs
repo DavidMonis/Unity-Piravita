@@ -310,7 +310,7 @@ public class Island7
 
 public class Player_Movement : MonoBehaviour
 {
-    private float Boat_Force = 0.001F;
+    private float Boat_Force = 0.0007F;
     private float force = 10;
     static public float Money = 0;
     static public int Boat_Level = 0;
