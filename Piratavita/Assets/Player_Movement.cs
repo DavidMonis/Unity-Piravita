@@ -310,11 +310,13 @@ public class Island7
 
 public class Player_Movement : MonoBehaviour
 {
-    static public float Money = 9000000;
+    private float Boat_Force = 0.05F;
+    private float force = 10;
+    static public float Money = 0;
     static public int Boat_Level = 0;
-    static public int Max_Capacity_t = 100;
+    static public int Max_Capacity_t = 1;
     static public double Actual_Capacity_t = 0;
-    static public int Food_On_Day = 100;
+    static public int Food_On_Day = 0;
     static public int Basic_Fish;
     //types
     static public int Special_Fish1;
@@ -368,7 +370,51 @@ public class Player_Movement : MonoBehaviour
     static public float Rubin;
     static public float Amethyst;
 
-    private float force = 10;
+    GameObject Text_Basic_Fish;
+    GameObject Text_Special_Fish1;
+    GameObject Text_Special_Fish2;
+    GameObject Text_Special_Fish3;
+    GameObject Text_Special_Fish4;
+    GameObject Text_Special_Fish5;
+    GameObject Text_Heavy_Fish1;
+    GameObject Text_Heavy_Fish2;
+    GameObject Text_Heavy_Fish3;
+    GameObject Text_Heavy_Fish4;
+    GameObject Text_Heavy_Fish5;
+    GameObject Text_Whale_Fish1;
+    GameObject Text_Whale_Fish2;
+    GameObject Text_Whale_Fish3;
+    GameObject Text_Bread;
+    GameObject Text_Milk;
+    GameObject Text_Salt;
+    GameObject Text_Sugar;
+    GameObject Text_Cocoa;
+    GameObject Text_Coffee;
+    GameObject Text_Potato;
+    GameObject Text_Vegetables;
+    GameObject Text_Fruit;
+    GameObject Text_Meat;
+    GameObject Text_Wheat;
+    GameObject Text_Alcohol;
+    GameObject Text_Gunpowder;
+    GameObject Text_Bullets;
+    GameObject Text_Cannon;
+    GameObject Text_Cannon_Ball;
+    GameObject Text_Pistol;
+    GameObject Text_Rifle;
+    GameObject Text_Dagger;
+    GameObject Text_Knife;
+    GameObject Text_Sword;
+    GameObject Text_Brick;
+    GameObject Text_Gravel;
+    GameObject Text_Wood;
+    GameObject Text_Iron;
+    GameObject Text_Gold;
+    GameObject Text_Bronze;
+    GameObject Text_Diamond;
+    GameObject Text_Rubin;
+    GameObject Text_Amethyst;
+
     private GameObject boat;
     private GameObject cam;
     bool Bigger_Camera = false;
@@ -408,7 +454,6 @@ public class Player_Movement : MonoBehaviour
     static int Time_Hour = 0;
     static int Time_Day = 0;
 
-    private float Boat_Force = 5F;
     private Vector3 target;
     private int Scene_Number = 0;
 
@@ -442,8 +487,24 @@ public class Player_Movement : MonoBehaviour
     GameObject Lvl6_Button;
     GameObject Lvl7_Button;
 
+    public static bool random = true;
+    void Hack_Mode() 
+    {
+        Money = 9000000;
+        Max_Capacity_t = 1000;
+        Food_On_Day = 1000;
+        Boat_Level = 10;
+        Boat_Force = 5;
+    }
     void Start()
     {
+        if (random)
+        {
+            PlayerPrefs.SetFloat("Position_X", 0);
+            PlayerPrefs.SetFloat("Position_Y", 0);
+            random = false;
+        }
+        Hack_Mode();
         //lvl1, island 5
         if (SceneManager.GetActiveScene().buildIndex == 6)
         {
@@ -491,12 +552,17 @@ public class Player_Movement : MonoBehaviour
         Constant_Level = GameObject.Find("/Canvas/Konstnant/Level");
         Constant_Time = GameObject.Find("/Canvas/Konstnant/Time");
         Day = GameObject.Find("/Canvas/Konstnant/Day");
+        _Capacity = GameObject.Find("/Canvas/Konstnant/Capacity");
+        _Capacity.SetActive(false);
         Add_Constanst();
+        Set_Inventory();
         //sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            Inventory_Button = GameObject.Find("/Canvas/Inventory");
+            Inventory_Table = GameObject.Find("/Canvas/Inventory table");
+            Inventory_Table.SetActive(false);
             Show_Stuff_Bool = false;
-            _Capacity = GameObject.Find("/Canvas/Capacity");
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
             cam = GameObject.Find("Cam");
             boat = GameObject.Find("Boat");
@@ -507,8 +573,6 @@ public class Player_Movement : MonoBehaviour
             Button_Special_Fishing = GameObject.Find("/Canvas/Fish lvl 2");
             Button_Heavy_Fishing = GameObject.Find("/Canvas/Fish lvl 3");
             Button_Whale_Fishing = GameObject.Find("/Canvas/Fish lvl 4");
-            Inventory_Button = GameObject.Find("/Canvas/Inventory");
-            Inventory_Table = GameObject.Find("/Canvas/Inventory table");
 
             target = boat.GetComponent<Transform>().position;
             Button_Boat.SetActive(false);
@@ -519,10 +583,16 @@ public class Player_Movement : MonoBehaviour
             Button_Whale_Fishing.SetActive(false);
             _Capacity.SetActive(false);
             Inventory_Table.SetActive(false);
+            boat.transform.position = new Vector3(PlayerPrefs.GetFloat("Position_X"), PlayerPrefs.GetFloat("Position_Y"), 0);
+            target.x = PlayerPrefs.GetFloat("Position_X");
+            target.y = PlayerPrefs.GetFloat("Position_Y");
         }
         //Main island
         if (SceneManager.GetActiveScene().buildIndex >= 1)
         {
+            Inventory_Button = GameObject.Find("/Canvas/Inventory");
+            Inventory_Table = GameObject.Find("/Canvas/Inventory table");
+            Inventory_Table.SetActive(false);
             Show_Stuff_Bool = false;
             cam = GameObject.Find("Cam");
             Button_Market = GameObject.Find("/Canvas/Market_Button");
@@ -545,7 +615,6 @@ public class Player_Movement : MonoBehaviour
             Button_Market2.SetActive(false);
             Buing.SetActive(false);
         }
-
     }
 
     // Update is called once per frame
@@ -601,6 +670,53 @@ public class Player_Movement : MonoBehaviour
             Leaving_Island();
         }
 
+    }
+    void Set_Inventory() 
+    {
+        Text_Basic_Fish = GameObject.Find("/Canvas/Inventory table/Basic_Fish");
+        Text_Special_Fish1 = GameObject.Find("/Canvas/Inventory table/Special_Fish1");
+        Text_Special_Fish2 = GameObject.Find("/Canvas/Inventory table/Special_Fish2");
+        Text_Special_Fish3 = GameObject.Find("/Canvas/Inventory table/Special_Fish3");
+        Text_Special_Fish4 = GameObject.Find("/Canvas/Inventory table/Special_Fish4");
+        Text_Special_Fish5 = GameObject.Find("/Canvas/Inventory table/Special_Fish5");
+        Text_Heavy_Fish1 = GameObject.Find("/Canvas/Inventory table/Heavy_Fish1");
+        Text_Heavy_Fish2 = GameObject.Find("/Canvas/Inventory table/Heavy_Fish2");
+        Text_Heavy_Fish3 = GameObject.Find("/Canvas/Inventory table/Heavy_Fish3");
+        Text_Heavy_Fish4 = GameObject.Find("/Canvas/Inventory table/Heavy_Fish4");
+        Text_Heavy_Fish5 = GameObject.Find("/Canvas/Inventory table/Heavy_Fish5");
+        Text_Whale_Fish1 = GameObject.Find("/Canvas/Inventory table/Whale_Fish1");
+        Text_Whale_Fish2 = GameObject.Find("/Canvas/Inventory table/Whale_Fish2");
+        Text_Whale_Fish3 = GameObject.Find("/Canvas/Inventory table/Whale_Fish3");
+        Text_Bread = GameObject.Find("/Canvas/Inventory table/Bread");
+        Text_Milk = GameObject.Find("/Canvas/Inventory table/Milk");
+        Text_Salt = GameObject.Find("/Canvas/Inventory table/Salt");
+        Text_Sugar = GameObject.Find("/Canvas/Inventory table/Sugar");
+        Text_Cocoa = GameObject.Find("/Canvas/Inventory table/Cocoa");
+        Text_Coffee = GameObject.Find("/Canvas/Inventory table/Coffee");
+        Text_Potato = GameObject.Find("/Canvas/Inventory table/Potato");
+        Text_Vegetables = GameObject.Find("/Canvas/Inventory table/Vegetables");
+        Text_Fruit = GameObject.Find("/Canvas/Inventory table/Fruit");
+        Text_Meat = GameObject.Find("/Canvas/Inventory table/Meat");
+        Text_Wheat = GameObject.Find("/Canvas/Inventory table/Wheat");
+        Text_Alcohol = GameObject.Find("/Canvas/Inventory table/Alcohol");
+        Text_Gunpowder = GameObject.Find("/Canvas/Inventory table/Gunpowder");
+        Text_Bullets = GameObject.Find("/Canvas/Inventory table/Bullets");
+        Text_Cannon = GameObject.Find("/Canvas/Inventory table/Cannon");
+        Text_Cannon_Ball = GameObject.Find("/Canvas/Inventory table/Cannon_Ball");
+        Text_Pistol = GameObject.Find("/Canvas/Inventory table/Pistol");
+        Text_Rifle = GameObject.Find("/Canvas/Inventory table/Rifle");
+        Text_Dagger = GameObject.Find("/Canvas/Inventory table/Dagger");
+        Text_Knife = GameObject.Find("/Canvas/Inventory table/Knife");
+        Text_Sword = GameObject.Find("/Canvas/Inventory table/Sword");
+        Text_Brick = GameObject.Find("/Canvas/Inventory table/Brick");
+        Text_Gravel = GameObject.Find("/Canvas/Inventory table/Gravel");
+        Text_Wood = GameObject.Find("/Canvas/Inventory table/Wood");
+        Text_Iron = GameObject.Find("/Canvas/Inventory table/Iron");
+        Text_Gold = GameObject.Find("/Canvas/Inventory table/Gold");
+        Text_Bronze = GameObject.Find("/Canvas/Inventory table/Bronze");
+        Text_Diamond = GameObject.Find("/Canvas/Inventory table/Diamond");
+        Text_Rubin = GameObject.Find("/Canvas/Inventory table/Rubin");
+        Text_Amethyst = GameObject.Find("/Canvas/Inventory table/Amethyst");
     }
     public void Bigger_Cam()
     {
@@ -703,6 +819,8 @@ public class Player_Movement : MonoBehaviour
     }
     public void Leave_Boat()
     {
+        PlayerPrefs.SetFloat("Position_X", boat.transform.position.x);
+        PlayerPrefs.SetFloat("Position_Y", boat.transform.position.y);
         SceneManager.LoadScene(Scene_Number);
     }
     void Control_Position()
@@ -1069,23 +1187,51 @@ public class Player_Movement : MonoBehaviour
             Inventory_Table.SetActive(true);
             _Capacity.SetActive(true);
             Show_Stuff_Bool = true;
+            Text_Basic_Fish.GetComponent<Text>().text = "Basic Fish: " + Basic_Fish.ToString();
+            Text_Special_Fish1.GetComponent<Text>().text = "Special Fish1: " + Special_Fish1.ToString();
+            Text_Special_Fish2.GetComponent<Text>().text = "Special Fish2: " + Special_Fish2.ToString();
+            Text_Special_Fish3.GetComponent<Text>().text = "Special Fish3: " + Special_Fish3.ToString();
+            Text_Special_Fish4.GetComponent<Text>().text = "Special Fish4: " + Special_Fish4.ToString();
+            Text_Special_Fish5.GetComponent<Text>().text = "Special Fish5: " + Special_Fish5.ToString();
+            Text_Heavy_Fish1.GetComponent<Text>().text = "Heavy Fish1: " + Heavy_Fish1.ToString();
+            Text_Heavy_Fish2.GetComponent<Text>().text = "Heavy Fish2: " + Heavy_Fish2.ToString();
+            Text_Heavy_Fish3.GetComponent<Text>().text = "Heavy Fish3: " + Heavy_Fish3.ToString();
+            Text_Heavy_Fish4.GetComponent<Text>().text = "heavy Fish4: " + Heavy_Fish4.ToString();
+            Text_Heavy_Fish5.GetComponent<Text>().text = "heavy Fish5: " + Heavy_Fish5.ToString();
+            Text_Whale_Fish1.GetComponent<Text>().text = "Whale Fish1: " + Whale_Fish1.ToString();
+            Text_Whale_Fish2.GetComponent<Text>().text = "Whale Fish2: " + Whale_Fish2.ToString();
+            Text_Whale_Fish3.GetComponent<Text>().text = "Whale Fish3: " + Whale_Fish3.ToString();
+            Text_Bread.GetComponent<Text>().text = "Bread: " + Bread.ToString();
+            Text_Milk.GetComponent<Text>().text = "Milk: " + Milk.ToString();
+            Text_Salt.GetComponent<Text>().text = "Salt: " + Salt.ToString();
+            Text_Sugar.GetComponent<Text>().text = "Sugar: " + Sugar.ToString();
+            Text_Cocoa.GetComponent<Text>().text = "Cocoa: " + Cocoa.ToString();
+            Text_Coffee.GetComponent<Text>().text = "Coffee: " + Coffee.ToString();
+            Text_Potato.GetComponent<Text>().text = "Potato: " + Potato.ToString();
+            Text_Vegetables.GetComponent<Text>().text = "Vegetables: " + Vegetables.ToString();
+            Text_Fruit.GetComponent<Text>().text = "Fruit: " + Fruit.ToString();
+            Text_Meat.GetComponent<Text>().text = "Meat: " + Meat.ToString();
+            Text_Wheat.GetComponent<Text>().text = "Wheat: " + Wheat.ToString();
+            Text_Alcohol.GetComponent<Text>().text = "Alcohol: " + Alcohol.ToString();
+            Text_Gunpowder.GetComponent<Text>().text = "Gunpowder: " + Gunpowder.ToString();
+            Text_Bullets.GetComponent<Text>().text = "Bullets: " + Bullets.ToString();
+            Text_Cannon.GetComponent<Text>().text = "Cannon: " + Cannon.ToString();
+            Text_Cannon_Ball.GetComponent<Text>().text = "Cannon Ball: " + Cannon_Ball.ToString();
+            Text_Pistol.GetComponent<Text>().text = "Pistol: " + Pistol.ToString();
+            Text_Rifle.GetComponent<Text>().text = "Rifle: " + Rifle.ToString();
+            Text_Dagger.GetComponent<Text>().text = "Dagger: " + Dagger.ToString();
+            Text_Knife.GetComponent<Text>().text = "Knife: " + Knife.ToString();
+            Text_Sword.GetComponent<Text>().text = "Sword: " + Sword.ToString();
+            Text_Brick.GetComponent<Text>().text = "Brick: " + Brick.ToString();
+            Text_Gravel.GetComponent<Text>().text = "Gravel: " + Gravel.ToString();
+            Text_Wood.GetComponent<Text>().text = "Wood: " + Wood.ToString();
+            Text_Iron.GetComponent<Text>().text = "Iron: " + Iron.ToString();
+            Text_Gold.GetComponent<Text>().text = "Gold: " + Gold.ToString();
+            Text_Bronze.GetComponent<Text>().text = "Bronze: " + Bronze.ToString();
+            Text_Diamond.GetComponent<Text>().text = "Diamond: " + Diamond.ToString();
+            Text_Rubin.GetComponent<Text>().text = "Rubin: " + Rubin.ToString();
+            Text_Amethyst.GetComponent<Text>().text = "Amethyst: " + Amethyst.ToString();
 
-            Debug.Log("Basic fish: " + Basic_Fish);
-            Debug.Log("Special fish1: " + Special_Fish1);
-            Debug.Log("Special fish2: " + Special_Fish2);
-            Debug.Log("Special fish3: " + Special_Fish3);
-            Debug.Log("Special fish4: " + Special_Fish4);
-            Debug.Log("Special fish5: " + Special_Fish5);
-
-            Debug.Log("Heavy fish1: " + Heavy_Fish1);
-            Debug.Log("Heavy fish2: " + Heavy_Fish2);
-            Debug.Log("Heavy fish3: " + Heavy_Fish3);
-            Debug.Log("Heavy fish4: " + Heavy_Fish4);
-            Debug.Log("Heavy fish5: " + Heavy_Fish5);
-
-            Debug.Log("Whale fish1: " + Whale_Fish1);
-            Debug.Log("Whale fish2: " + Whale_Fish2);
-            Debug.Log("Whale fish3: " + Whale_Fish3);
         }
         else if (Show_Stuff_Bool)
         {
@@ -1103,7 +1249,6 @@ public class Player_Movement : MonoBehaviour
         + (Rifle * 0.004F) + (Dagger * 0.00025F) + (Knife * 0.0005F) + (Sword * 0.002F) + (Brick * 0.001F) + (Gravel * 0.001F) + (Wood * 0.001F) + (Iron * 0.001F) + (Gold * 0.001F)
         + (Bronze * 0.001F) + (Diamond * 0.001F) + (Rubin * 0.001F) + (Amethyst * 0.001F);
         //váha canonu je 2t,váha gule je 20kg,vaha pistole je 1KG,vaha rifle je 4KG,váha dýky je 250G,váha noža je 0.5KG,váha jednoruèného meèa 2KG
-        Debug.Log(Actual_Capacity_t);
     }
     void Touching_Special_Area()
     {
@@ -1267,211 +1412,151 @@ public class Player_Movement : MonoBehaviour
         {
             Money += Buing_Price;
             Bread -= 1;
-            Debug.Log(Money);
-            Debug.Log(Bread);
         }
         else if (Buing_Item == "Milk" & Milk >= 1)
         {
             Money += Buing_Price;
             Milk -= 1;
-            Debug.Log(Money);
-            Debug.Log(Milk);
         }
         else if (Buing_Item == "Salt" & Salt >= 1)
         {
             Money += Buing_Price;
             Salt -= 1;
-            Debug.Log(Money);
-            Debug.Log(Salt);
         }
         else if (Buing_Item == "Sugar" & Sugar >= 1)
         {
             Money += Buing_Price;
             Sugar -= 1;
-            Debug.Log(Money);
-            Debug.Log(Sugar);
         }
         else if (Buing_Item == "Cocoa" & Cocoa >= 1)
         {
             Money += Buing_Price;
             Cocoa -= 1;
-            Debug.Log(Money);
-            Debug.Log(Cocoa);
         }
         else if (Buing_Item == "Coffee" & Coffee >= 1)
         {
             Money += Buing_Price;
             Coffee -= 1;
-            Debug.Log(Money);
-            Debug.Log(Coffee);
         }
         else if (Buing_Item == "Potato" & Potato >= 1)
         {
             Money += Buing_Price;
             Potato -= 1;
-            Debug.Log(Money);
-            Debug.Log(Potato);
         }
         else if (Buing_Item == "Vegetables" & Vegetables >= 1)
         {
             Money += Buing_Price;
             Vegetables -= 1;
-            Debug.Log(Money);
-            Debug.Log(Vegetables);
         }
         else if (Buing_Item == "Fruit" & Fruit >= 1)
         {
             Money += Buing_Price;
             Fruit -= 1;
-            Debug.Log(Money);
-            Debug.Log(Fruit);
         }
         else if (Buing_Item == "Meat" & Meat >= 1)
         {
             Money += Buing_Price;
             Meat -= 1;
-            Debug.Log(Money);
-            Debug.Log(Meat);
         }
         else if (Buing_Item == "Wheat" & Wheat >= 1)
         {
             Money += Buing_Price;
             Wheat -= 1;
-            Debug.Log(Money);
-            Debug.Log(Wheat);
         }
         else if (Buing_Item == "Alcohol" & Alcohol >= 1)
         {
             Money += Buing_Price;
             Alcohol -= 1;
-            Debug.Log(Money);
-            Debug.Log(Alcohol);
         }
         else if (Buing_Item == "Gunpowder" & Gunpowder >= 1)
         {
             Money += Buing_Price;
             Gunpowder -= 1;
-            Debug.Log(Money);
-            Debug.Log(Gunpowder);
         }
         else if (Buing_Item == "Bullets" & Bullets >= 1)
         {
             Money += Buing_Price;
             Bullets -= 1;
-            Debug.Log(Money);
-            Debug.Log(Bullets);
         }
         else if (Buing_Item == "Cannon" & Cannon >= 1)
         {
             Money += Buing_Price;
             Cannon -= 1;
-            Debug.Log(Money);
-            Debug.Log(Cannon);
         }
         else if (Buing_Item == "Cannon_Ball_Price" & Cannon_Ball >= 1)
         {
             Money += Buing_Price;
             Cannon_Ball -= 1;
-            Debug.Log(Money);
-            Debug.Log(Cannon_Ball);
         }
         else if (Buing_Item == "Pistol" & Pistol >= 1)
         {
             Money += Buing_Price;
             Pistol -= 1;
-            Debug.Log(Money);
-            Debug.Log(Pistol);
         }
         else if (Buing_Item == "Rifle" & Rifle >= 1)
         {
             Money += Buing_Price;
             Rifle -= 1;
-            Debug.Log(Money);
-            Debug.Log(Rifle);
         }
         else if (Buing_Item == "Dagger" & Dagger >= 1)
         {
             Money += Buing_Price;
             Dagger -= 1;
-            Debug.Log(Money);
-            Debug.Log(Dagger);
         }
         else if (Buing_Item == "Knife" & Knife >= 1)
         {
             Money += Buing_Price;
             Knife -= 1;
-            Debug.Log(Money);
-            Debug.Log(Knife);
         }
         else if (Buing_Item == "Sword" & Sword >= 1)
         {
             Money += Buing_Price;
             Sword -= 1;
-            Debug.Log(Money);
-            Debug.Log(Sword);
         }
         else if (Buing_Item == "Brick" & Brick >= 1)
         {
             Money += Buing_Price;
             Brick -= 1;
-            Debug.Log(Money);
-            Debug.Log(Brick);
         }
         else if (Buing_Item == "Gravel" & Gravel >= 1)
         {
             Money += Buing_Price;
             Gravel -= 1;
-            Debug.Log(Money);
-            Debug.Log(Gravel);
         }
         else if (Buing_Item == "Wood" & Wood >= 1)
         {
             Money += Buing_Price;
             Wood -= 1;
-            Debug.Log(Money);
-            Debug.Log(Wood);
         }
         else if (Buing_Item == "Iron" & Iron >= 1)
         {
             Money += Buing_Price;
             Iron -= 1;
-            Debug.Log(Money);
-            Debug.Log(Iron);
         }
         else if (Buing_Item == "Gold" & Gold >= 1)
         {
             Money += Buing_Price;
             Gold -= 1;
-            Debug.Log(Money);
-            Debug.Log(Gold);
         }
         else if (Buing_Item == "Bronze" & Bronze >= 1)
         {
             Money += Buing_Price;
             Bronze -= 1;
-            Debug.Log(Money);
-            Debug.Log(Bronze);
         }
         else if (Buing_Item == "Diamond" & Diamond >= 1)
         {
             Money += Buing_Price;
             Diamond -= 1;
-            Debug.Log(Money);
-            Debug.Log(Diamond);
         }
         else if (Buing_Item == "Rubin" & Rubin >= 1)
         {
             Money += Buing_Price;
             Rubin -= 1;
-            Debug.Log(Money);
-            Debug.Log(Rubin);
         }
         else if (Buing_Item == "Amethyst" & Amethyst >= 1)
         {
             Money += Buing_Price;
             Amethyst -= 1;
-            Debug.Log(Money);
-            Debug.Log(Amethyst);
         }
 
 
@@ -1479,99 +1564,71 @@ public class Player_Movement : MonoBehaviour
         {
             Money += Buing_Price;
             Basic_Fish -= 1;
-            Debug.Log(Money);
-            Debug.Log(Basic_Fish);
         }
         else if (Buing_Item == "Special_Fish1" & Special_Fish1 >= 1)
         {
             Money += Buing_Price;
             Special_Fish1 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish1);
         }
         else if (Buing_Item == "Special_Fish2" & Special_Fish2 >= 1)
         {
             Money += Buing_Price;
             Special_Fish2 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish2);
         }
         else if (Buing_Item == "Special_Fish3" & Special_Fish3 >= 1)
         {
             Money += Buing_Price;
             Special_Fish3 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish3);
         }
         else if (Buing_Item == "Special_Fish4" & Special_Fish4 >= 1)
         {
             Money += Buing_Price;
             Special_Fish4 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish4);
         }
         else if (Buing_Item == "Special_Fish5" & Special_Fish5 >= 1)
         {
             Money += Buing_Price;
             Special_Fish5 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish5);
         }
         else if (Buing_Item == "Whale_Fish1" & Whale_Fish1 >= 1)
         {
             Money += Buing_Price;
             Whale_Fish1 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Whale_Fish1);
         }
         else if (Buing_Item == "Whale_Fish2" & Whale_Fish2 >= 1)
         {
             Money += Buing_Price;
             Whale_Fish2 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Whale_Fish2);
         }
         else if (Buing_Item == "Whale_Fish3" & Whale_Fish3 >= 1)
         {
             Money += Buing_Price;
             Whale_Fish3 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Whale_Fish3);
         }
         else if (Buing_Item == "Heavy_Fish1" & Heavy_Fish1 >= 1)
         {
             Money += Buing_Price;
-            Heavy_Fish1 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish1);
+            Heavy_Fish1 -= 1;;
         }
         else if (Buing_Item == "Heavy_Fish2" & Heavy_Fish2 >= 1)
         {
             Money += Buing_Price;
             Heavy_Fish2 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish2);
         }
         else if (Buing_Item == "Heavy_Fish3" & Heavy_Fish3 >= 1)
         {
             Money += Buing_Price;
             Heavy_Fish3 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish3);
         }
         else if (Buing_Item == "Heavy_Fish4" & Heavy_Fish4 >= 1)
         {
             Money += Buing_Price;
             Heavy_Fish4 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish4);
         }
         else if (Buing_Item == "Heavy_Fish5" & Heavy_Fish5 >= 1)
         {
             Money += Buing_Price;
             Heavy_Fish5 -= 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish5);
         }
 
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
@@ -1586,211 +1643,152 @@ public class Player_Movement : MonoBehaviour
         {
             Money -= Buing_Price;
             Bread += 1;
-            Debug.Log(Money);
-            Debug.Log(Bread);
         }
         else if (Buing_Item == "Milk" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Milk += 1;
-            Debug.Log(Money);
-            Debug.Log(Milk);
         }
         else if (Buing_Item == "Salt" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Salt += 1;
-            Debug.Log(Money);
-            Debug.Log(Salt);
         }
         else if (Buing_Item == "Sugar" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Sugar += 1;
-            Debug.Log(Money);
-            Debug.Log(Sugar);
         }
         else if (Buing_Item == "Cocoa" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Cocoa += 1;
-            Debug.Log(Money);
-            Debug.Log(Cocoa);
         }
         else if (Buing_Item == "Coffee" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Coffee += 1;
-            Debug.Log(Money);
-            Debug.Log(Coffee);
         }
         else if (Buing_Item == "Potato" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Potato += 1;
-            Debug.Log(Money);
-            Debug.Log(Potato);
         }
         else if (Buing_Item == "Vegetables" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Vegetables += 1;
-            Debug.Log(Money);
-            Debug.Log(Vegetables);
         }
         else if (Buing_Item == "Fruit" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Fruit += 1;
-            Debug.Log(Money);
-            Debug.Log(Fruit);
         }
         else if (Buing_Item == "Meat" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Meat += 1;
-            Debug.Log(Money);
-            Debug.Log(Meat);
         }
         else if (Buing_Item == "Wheat" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Wheat += 1;
-            Debug.Log(Money);
-            Debug.Log(Wheat);
+        
         }
         else if (Buing_Item == "Alcohol" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Alcohol += 1;
-            Debug.Log(Money);
-            Debug.Log(Alcohol);
         }
         else if (Buing_Item == "Gunpowder" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Gunpowder += 1;
-            Debug.Log(Money);
-            Debug.Log(Gunpowder);
         }
         else if (Buing_Item == "Bullets" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Bullets += 1;
-            Debug.Log(Money);
-            Debug.Log(Bullets);
         }
         else if (Buing_Item == "Cannon" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Cannon += 1;
-            Debug.Log(Money);
-            Debug.Log(Cannon);
         }
         else if (Buing_Item == "Cannon_Ball_Price" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Cannon_Ball += 1;
-            Debug.Log(Money);
-            Debug.Log(Cannon_Ball);
         }
         else if (Buing_Item == "Pistol" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Pistol += 1;
-            Debug.Log(Money);
-            Debug.Log(Pistol);
         }
         else if (Buing_Item == "Rifle" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Rifle += 1;
-            Debug.Log(Money);
-            Debug.Log(Rifle);
         }
         else if (Buing_Item == "Dagger" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Dagger += 1;
-            Debug.Log(Money);
-            Debug.Log(Dagger);
         }
         else if (Buing_Item == "Knife" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Knife += 1;
-            Debug.Log(Money);
-            Debug.Log(Knife);
         }
         else if (Buing_Item == "Sword" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Sword += 1;
-            Debug.Log(Money);
-            Debug.Log(Sword);
         }
         else if (Buing_Item == "Brick" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Brick += 1;
-            Debug.Log(Money);
-            Debug.Log(Brick);
         }
         else if (Buing_Item == "Gravel" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Gravel += 1;
-            Debug.Log(Money);
-            Debug.Log(Gravel);
         }
         else if (Buing_Item == "Wood" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Wood += 1;
-            Debug.Log(Money);
-            Debug.Log(Wood);
         }
         else if (Buing_Item == "Iron" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Iron += 1;
-            Debug.Log(Money);
-            Debug.Log(Iron);
         }
         else if (Buing_Item == "Gold" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Gold += 1;
-            Debug.Log(Money);
-            Debug.Log(Gold);
         }
         else if (Buing_Item == "Bronze" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Bronze += 1;
-            Debug.Log(Money);
-            Debug.Log(Bronze);
         }
         else if (Buing_Item == "Diamond" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Diamond += 1;
-            Debug.Log(Money);
-            Debug.Log(Diamond);
         }
         else if (Buing_Item == "Rubin" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Rubin += 1;
-            Debug.Log(Money);
-            Debug.Log(Rubin);
         }
         else if (Buing_Item == "Amethyst" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Amethyst += 1;
-            Debug.Log(Money);
-            Debug.Log(Amethyst);
         }
 
 
@@ -1798,99 +1796,71 @@ public class Player_Movement : MonoBehaviour
         {
             Money -= Buing_Price;
             Basic_Fish += 1;
-            Debug.Log(Money);
-            Debug.Log(Basic_Fish);
         }
         else if (Buing_Item == "Special_Fish1" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Special_Fish1 += 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish1);
         }
         else if (Buing_Item == "Special_Fish2" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Special_Fish2 += 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish2);
         }
         else if (Buing_Item == "Special_Fish3" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Special_Fish3 += 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish3);
         }
         else if (Buing_Item == "Special_Fish4" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Special_Fish4 += 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish4);
         }
         else if (Buing_Item == "Special_Fish5" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Special_Fish5 += 1;
-            Debug.Log(Money);
-            Debug.Log(Special_Fish5);
         }
         else if (Buing_Item == "Heavy_Fish1" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Heavy_Fish1 += 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish1);
         }
         else if (Buing_Item == "Heavy_Fish2" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Heavy_Fish2 += 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish2);
         }
         else if (Buing_Item == "Heavy_Fish3" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Heavy_Fish3 += 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish3);
         }
         else if (Buing_Item == "Heavy_Fish4" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Heavy_Fish4 += 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish4);
         }
         else if (Buing_Item == "Heavy_Fish5" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Heavy_Fish5 += 1;
-            Debug.Log(Money);
-            Debug.Log(Heavy_Fish5);
         }
         else if (Buing_Item == "Whale_Fish1" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Whale_Fish1 += 1;
-            Debug.Log(Money);
-            Debug.Log(Whale_Fish1);
         }
         else if (Buing_Item == "Whale_Fish2" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Whale_Fish2 += 1;
-            Debug.Log(Money);
-            Debug.Log(Whale_Fish2);
         }
         else if (Buing_Item == "Whale_Fish3" & Money >= Buing_Price)
         {
             Money -= Buing_Price;
             Whale_Fish3 += 1;
-            Debug.Log(Money);
-            Debug.Log(Whale_Fish3);
         }
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
         Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
@@ -2952,18 +2922,21 @@ public class Player_Movement : MonoBehaviour
         {
             Money -= 1000;
             Boat_Level = 1;
+            Max_Capacity_t = 3;
             Lvl1_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 1 & Money >= 5000)
         {
             Money -= 5000;
             Boat_Level = 2;
+            Max_Capacity_t = 10;
             Lvl2_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 2 & Money >= 10000)
         {
             Money -= 10000;
             Boat_Level = 3;
+            Max_Capacity_t = 50;
             Lvl3_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 3 & Money >= 50000)
@@ -2976,6 +2949,7 @@ public class Player_Movement : MonoBehaviour
         {
             Money -= 100000;
             Boat_Level = 5;
+            Boat_Force = Boat_Force * 2;
             Lvl5_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 5 & Money >= 500000)
