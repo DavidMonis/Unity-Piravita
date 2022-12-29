@@ -310,7 +310,7 @@ public class Island7
 
 public class Player_Movement : MonoBehaviour
 {
-    private float Boat_Force = 0.0007F;
+    private float Boat_Force = 0.0015F;
     private float force = 10;
     static public float Money = 0;
     static public int Boat_Level = 0;
@@ -3032,14 +3032,14 @@ public class Player_Movement : MonoBehaviour
     {
         if(random1 == false)
         {
-            Time_Element = Time_Element*200;
-            Boat_Force = Boat_Force * 200;
+            Time_Element = Time_Element*400;
+            Boat_Force = Boat_Force * 400;
             random1 = true;
         }
         else if (random1)
         {
-            Time_Element = Time_Element / 200;
-            Boat_Force = Boat_Force / 200;
+            Time_Element = Time_Element / 400;
+            Boat_Force = Boat_Force / 400;
             random1 = false;
         }
     }
