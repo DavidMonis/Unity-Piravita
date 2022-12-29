@@ -2809,8 +2809,8 @@ Transform:
   m_LocalScale: {x: 0.00016543966, y: 0.00029411764, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 247227911}
   - {fileID: 220225920}
+  - {fileID: 247227911}
   - {fileID: 94518437}
   - {fileID: 1557326350}
   - {fileID: 1443790775}
@@ -3574,6 +3574,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 881551620}
     m_Modifications:
+    - target: {fileID: 8757599794446506556, guid: d8d7de3f5c5aeb54f8a4785b9186f4d0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 890052810}
+    - target: {fileID: 8757599794446506556, guid: d8d7de3f5c5aeb54f8a4785b9186f4d0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit_Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8757599794582971921, guid: d8d7de3f5c5aeb54f8a4785b9186f4d0,
         type: 3}
       propertyPath: m_Pivot.x

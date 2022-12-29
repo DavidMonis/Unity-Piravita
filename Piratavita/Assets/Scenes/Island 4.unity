@@ -15114,6 +15114,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1605803439}
     m_Modifications:
+    - target: {fileID: 8757599794446506556, guid: d8d7de3f5c5aeb54f8a4785b9186f4d0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1589676027}
+    - target: {fileID: 8757599794446506556, guid: d8d7de3f5c5aeb54f8a4785b9186f4d0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit_Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8757599794582971921, guid: d8d7de3f5c5aeb54f8a4785b9186f4d0,
         type: 3}
       propertyPath: m_Pivot.x
