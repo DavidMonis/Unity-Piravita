@@ -514,7 +514,6 @@ public class Player_Movement : MonoBehaviour
     }
     void Start()
     {
-        Hack_Mode();
         if (random)
         {
             PlayerPrefs.SetFloat("Position_X", 0);
