@@ -317,6 +317,11 @@ public class Player_Movement : MonoBehaviour
     static public int Max_Capacity_t = 1;
     static public double Actual_Capacity_t = 0;
     static public int Food_On_Day = 10;
+
+    static public bool Game_Over = false;
+    public Transform Soldier_;
+    public static int How_Many_Soldiers;
+    bool State_Day;
     static public int Basic_Fish;
     //types
     static public int Special_Fish1;
@@ -502,6 +507,9 @@ public class Player_Movement : MonoBehaviour
 
     GameObject Food_On_day_Text;
     GameObject Dead_Panel;
+    GameObject Dead_Panel_Text;
+
+    GameObject Soldier;
     void Hack_Mode() 
     {
         Money = 9000000;
@@ -563,6 +571,15 @@ public class Player_Movement : MonoBehaviour
         //lvl7, main island
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
+            Transform[] Soldier_Array = new Transform[How_Many_Soldiers];
+
+            for (int i = 0; i < How_Many_Soldiers; i++)
+            {
+                Soldier_Array[i] = Instantiate(Soldier_, transform.position = new Vector3(Random.Range(10,50), Random.Range(50, -50), 0F), transform.rotation);
+            }
+            gameObject.transform.position = new Vector3(0, 0, 0);
+
+            Soldier = GameObject.Find("Soldier");
             Lvl7_Button = GameObject.Find("/Canvas/BoatLevel");
             Lvl7_Button.SetActive(false);
             Button_Pub = GameObject.Find("/Canvas/Pub_Button");
@@ -571,6 +588,7 @@ public class Player_Movement : MonoBehaviour
             Panel_Pub.SetActive(false);
         }
 
+        Dead_Panel_Text = GameObject.Find("/Canvas/Dead/Text");
         Constant_Money = GameObject.Find("/Canvas/Konstnant/Money");
         Constant_Level = GameObject.Find("/Canvas/Konstnant/Level");
         Constant_Time = GameObject.Find("/Canvas/Konstnant/Time");
@@ -615,9 +633,10 @@ public class Player_Movement : MonoBehaviour
             target.x = PlayerPrefs.GetFloat("Position_X");
             target.y = PlayerPrefs.GetFloat("Position_Y");
         }
-        //Main island
+        //islands
         if (SceneManager.GetActiveScene().buildIndex >= 1)
         {
+            
             Inventory_Button = GameObject.Find("/Canvas/Inventory");
             Inventory_Table = GameObject.Find("/Canvas/Inventory table");
             Inventory_Table.SetActive(false);
@@ -648,6 +667,11 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Game_Over) 
+        {
+            Dead_Panel.SetActive(true);
+            Dead_Panel_Text.GetComponent<Text>().text = "Soldiers caught you";
+        }
         Time_();
         //movement on the sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -861,6 +885,7 @@ public class Player_Movement : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Position_X", boat.transform.position.x);
         PlayerPrefs.SetFloat("Position_Y", boat.transform.position.y);
+        Soldier_Movement.Soldier_Moving_Bool = false;
         SceneManager.LoadScene(Scene_Number);
     }
     void Control_Position()
@@ -1007,6 +1032,10 @@ public class Player_Movement : MonoBehaviour
                 Touching_Whale3 = true;
             }
 
+        }
+        if(collision.tag == "Soldier") 
+        {
+            Soldier_Movement.Soldier_Moving_Bool = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -1201,6 +1230,7 @@ public class Player_Movement : MonoBehaviour
         if (_Time >= 60)
         {
             Time_Hour += 1;
+            What_Part_Of_Day();
             _Time = 0;
             if (Time_Hour >= 24)
             {
@@ -3085,5 +3115,18 @@ public class Player_Movement : MonoBehaviour
         Money -= 10;
         Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
+    }
+    void What_Part_Of_Day() 
+    {
+        if(Time_Hour > 20 | Time_Hour < 7)
+        {
+            State_Day = false;
+            How_Many_Soldiers = 5;
+        }
+        else
+        {
+            State_Day = true;
+            How_Many_Soldiers = 10;
+        }
     }
 }

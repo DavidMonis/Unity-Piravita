@@ -1601,6 +1601,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7561406820813283675, guid: 5f6e9de611088be48b6732f26068093d,
+        type: 3}
+      propertyPath: Soldier_
+      value: 
+      objectReference: {fileID: 4492086802810518758, guid: 26a1fcd815053174e8d245a519ea05f6,
+        type: 3}
+    - target: {fileID: 7561406820813283675, guid: 5f6e9de611088be48b6732f26068093d,
+        type: 3}
+      propertyPath: How_Many_Soldiers
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7561406820813283677, guid: 5f6e9de611088be48b6732f26068093d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2697,7 +2708,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

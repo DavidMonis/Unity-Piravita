@@ -17,6 +17,7 @@ TagManager:
   - Whale1
   - Whale2
   - Whale3
+  - Soldier
   layers:
   - Default
   - TransparentFX
