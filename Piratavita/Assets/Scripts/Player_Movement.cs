@@ -510,7 +510,7 @@ public class Player_Movement : MonoBehaviour
     GameObject Dead_Panel_Text;
 
     GameObject Soldier;
-    void Hack_Mode() 
+    void Cheat_Mode() 
     {
         Money = 9000000;
         Max_Capacity_t = 1000;
@@ -522,6 +522,7 @@ public class Player_Movement : MonoBehaviour
     }
     void Start()
     {
+        Cheat_Mode();
         if (random)
         {
             PlayerPrefs.SetFloat("Position_X", 0);
@@ -817,6 +818,9 @@ public class Player_Movement : MonoBehaviour
             if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -700 | Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 2000)
             {
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                target.x += 150;
+                target.y += 100;
+                Debug.Log(target);
                 target.z = 0;
                 Special_Boat_Movement();
             }
@@ -826,16 +830,16 @@ public class Player_Movement : MonoBehaviour
     void Special_Boat_Movement()
     {
         //mainisland
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < 1500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > 1000 &
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).x > 1900 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < 2500)
+        if (Main_Island_Script.Main_Island_Pressed)
         {
-            target = new Vector3(2040, 1040, 0);
+            Main_Island_Script.Main_Island_Pressed = false;
+            target = new Vector3(2120, 882, 0);
         }
         //island1
         else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
             Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2350 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2250)
         {
-            target = new Vector3(-2270, -1500, 0);
+            target = new Vector3(-2118, -1121, 0);
         }
         //island2
         else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1570 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1670 &
@@ -891,7 +895,7 @@ public class Player_Movement : MonoBehaviour
     void Control_Position()
     {
         //main
-        if (boat.transform.position.x == 2040 & boat.transform.position.y == 1040 & Bigger_Camera == false)
+        if (boat.transform.position.x == 2120 & boat.transform.position.y == 882 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 1;

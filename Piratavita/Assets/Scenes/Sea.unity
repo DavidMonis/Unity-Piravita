@@ -1981,6 +1981,8 @@ GameObject:
   m_Component:
   - component: {fileID: 530925549}
   - component: {fileID: 530925548}
+  - component: {fileID: 530925551}
+  - component: {fileID: 530925550}
   m_Layer: 0
   m_Name: Island3
   m_TagString: Untagged
@@ -2055,6 +2057,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &530925550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530925547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3321f0346e80954409a78c1cc09de470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &530925551
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530925547}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -113.332565, y: -64.87924}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.452545, y: 3.9453583}
+  m_EdgeRadius: 0
 --- !u!1001 &539786416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2070,7 +2110,7 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
@@ -2080,7 +2120,7 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1019
+      value: -952
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
@@ -2283,6 +2323,8 @@ GameObject:
   m_Component:
   - component: {fileID: 567248156}
   - component: {fileID: 567248155}
+  - component: {fileID: 567248158}
+  - component: {fileID: 567248157}
   m_Layer: 0
   m_Name: Island7
   m_TagString: Untagged
@@ -2357,6 +2399,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &567248157
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567248154}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -109.7424, y: -56.90094}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.492859, y: 3.0502434}
+  m_EdgeRadius: 0
+--- !u!114 &567248158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567248154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e76c93dc5b00baf4f9a920d6092c0949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &576717124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3076,17 +3156,17 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2188
+      value: 2389
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 549
+      value: 493
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
@@ -3214,17 +3294,17 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2537
+      value: 2814
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 517
+      value: 485
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
@@ -4857,6 +4937,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1057126834}
   - component: {fileID: 1057126833}
+  - component: {fileID: 1057126836}
+  - component: {fileID: 1057126835}
   m_Layer: 0
   m_Name: Island5
   m_TagString: Untagged
@@ -4931,6 +5013,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057126835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057126832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcebfefbc7cdbee44a33c36ed5ec3c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1057126836
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057126832}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -117.01085, y: -58.520622}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8.830177, y: 5.7315063}
+  m_EdgeRadius: 0
 --- !u!4 &1062639150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4367230087092234067, guid: 7a0e389a470da964eaa623d423582821,
@@ -5059,6 +5179,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1117781497}
   - component: {fileID: 1117781496}
+  - component: {fileID: 1117781499}
+  - component: {fileID: 1117781498}
   m_Layer: 0
   m_Name: Island4
   m_TagString: Untagged
@@ -5133,6 +5255,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1117781498
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117781495}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -107.57463, y: -51.28668}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.704857, y: 6.290428}
+  m_EdgeRadius: 0
+--- !u!114 &1117781499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117781495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e81108a405f9f44caf1e24daa57c632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1124792000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5358,7 +5518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218849750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 142.6, y: 124.3, z: 0}
+  m_LocalPosition: {x: -2092, y: -1303, z: -1}
   m_LocalScale: {x: 23.6, y: 23.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6151,6 +6311,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1413474094}
   - component: {fileID: 1413474095}
+  - component: {fileID: 1413474097}
+  - component: {fileID: 1413474096}
   m_Layer: 0
   m_Name: Main Island
   m_TagString: Untagged
@@ -6225,6 +6387,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1413474096
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413474093}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 96.36813, y: 45.64449}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 32.240906, y: 28.088648}
+  m_EdgeRadius: 0
+--- !u!114 &1413474097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413474093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d3a04087649844fa91c65e423cee22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1424484097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6613,6 +6813,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1558003924}
   - component: {fileID: 1558003923}
+  - component: {fileID: 1558003926}
+  - component: {fileID: 1558003925}
   m_Layer: 0
   m_Name: Island1
   m_TagString: Untagged
@@ -6687,6 +6889,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1558003925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558003922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb937c1745b01ba43b6309a924c8906b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1558003926
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558003922}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -99.36726, y: -58.033234}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.739807, y: 4.849365}
+  m_EdgeRadius: 0
 --- !u!4 &1567626799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8645262991834943841, guid: 586a9e763c8ff154887a01b577fbcfab,
@@ -7132,17 +7372,17 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2312
+      value: -2274
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1022
+      value: -946
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
@@ -7398,7 +7638,7 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 868
+      value: 536
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
@@ -7841,8 +8081,8 @@ Transform:
   - {fileID: 2024360283}
   - {fileID: 1411837564}
   - {fileID: 1608020399}
-  - {fileID: 1573594095}
   - {fileID: 1432218468}
+  - {fileID: 1573594095}
   - {fileID: 1651885932}
   - {fileID: 283576648}
   - {fileID: 902633900}
@@ -7888,6 +8128,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1891526798}
   - component: {fileID: 1891526797}
+  - component: {fileID: 1891526800}
+  - component: {fileID: 1891526799}
   m_Layer: 0
   m_Name: Island2
   m_TagString: Untagged
@@ -7962,6 +8204,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1891526799
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891526796}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -106.03415, y: -61.511967}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.8948593, y: 5.4287033}
+  m_EdgeRadius: 0
+--- !u!114 &1891526800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891526796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b0878667896554986310bb82552462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1899149834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 462165516817983074, guid: 22cd5afb49894904f9ac7e7239cbdf80,
@@ -8132,7 +8412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &2042054839
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8430,6 +8710,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2079494365}
   - component: {fileID: 2079494364}
+  - component: {fileID: 2079494367}
+  - component: {fileID: 2079494366}
   m_Layer: 0
   m_Name: Island6
   m_TagString: Untagged
@@ -8504,6 +8786,44 @@ Transform:
   m_Father: {fileID: 1628471037}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2079494366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079494363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da257b24fccf6684d8724d363d1e37e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &2079494367
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079494363}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -116.96437, y: -51.292088}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 256, y: 144}
+    newSize: {x: 256, y: 144}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.4532776, y: 4.24102}
+  m_EdgeRadius: 0
 --- !u!1001 &2079529510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8662,12 +8982,12 @@ PrefabInstance:
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2596
+      value: 2930
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 932
+      value: 839
       objectReference: {fileID: 0}
     - target: {fileID: 901890728616645100, guid: 8b9cecf43cb0a84468d9650837aec14a,
         type: 3}
