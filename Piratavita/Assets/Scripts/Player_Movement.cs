@@ -421,6 +421,8 @@ public class Player_Movement : MonoBehaviour
     GameObject Text_Amethyst;
 
     private GameObject boat;
+    private GameObject small_boat;
+    private GameObject map_;
     private GameObject cam;
     bool Bigger_Camera = false;
     private GameObject Button_Map;
@@ -502,7 +504,7 @@ public class Player_Movement : MonoBehaviour
     GameObject Button_Pub;
     GameObject Panel_Pub;
     bool Standing_On_Pub;
-    public bool Taking_Poeple;
+    static public bool Taking_Poeple;
     static public double Different;
 
     GameObject Food_On_day_Text;
@@ -522,13 +524,13 @@ public class Player_Movement : MonoBehaviour
     }
     void Start()
     {
-        Cheat_Mode();
         if (random)
         {
             PlayerPrefs.SetFloat("Position_X", 0);
             PlayerPrefs.SetFloat("Position_Y", 0);
             random = false;
         }
+        Cheat_Mode();
         //lvl1, island 5
         if (SceneManager.GetActiveScene().buildIndex == 6)
         {
@@ -604,6 +606,8 @@ public class Player_Movement : MonoBehaviour
         //sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            map_ = GameObject.Find("Map");
+            small_boat = GameObject.Find("/Boat/Boat 1");
             SpeedTravel_Button = GameObject.Find("/Canvas/SpeedTravel");
             Inventory_Button = GameObject.Find("/Canvas/Inventory");
             Inventory_Table = GameObject.Find("/Canvas/Inventory table");
@@ -677,19 +681,19 @@ public class Player_Movement : MonoBehaviour
         //movement on the sea
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            if (Input.GetKey(KeyCode.D) & boat.GetComponent<Transform>().position.x + 9 > GetComponent<Transform>().position.x)
+            if (Input.GetKey(KeyCode.D) & small_boat.GetComponent<Transform>().position.x + 9 > GetComponent<Transform>().position.x)
             {
                 GetComponent<Transform>().position = new Vector3(GetComponent<Transform>().position.x + force * Time.deltaTime, GetComponent<Transform>().position.y, GetComponent<Transform>().position.z);
             }
-            if (Input.GetKey(KeyCode.A) & boat.GetComponent<Transform>().position.x - 9 < GetComponent<Transform>().position.x)
+            if (Input.GetKey(KeyCode.A) & small_boat.GetComponent<Transform>().position.x - 9 < GetComponent<Transform>().position.x)
             {
                 GetComponent<Transform>().position = new Vector3(GetComponent<Transform>().position.x - force * Time.deltaTime, GetComponent<Transform>().position.y, GetComponent<Transform>().position.z);
             }
-            if (Input.GetKey(KeyCode.W) & boat.GetComponent<Transform>().position.y + 23 > GetComponent<Transform>().position.y)
+            if (Input.GetKey(KeyCode.W) & small_boat.GetComponent<Transform>().position.y + 23 > GetComponent<Transform>().position.y)
             {
                 GetComponent<Transform>().position = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y + force * Time.deltaTime, GetComponent<Transform>().position.z);
             }
-            if (Input.GetKey(KeyCode.S) & boat.GetComponent<Transform>().position.y - 23 < GetComponent<Transform>().position.y)
+            if (Input.GetKey(KeyCode.S) & small_boat.GetComponent<Transform>().position.y - 23 < GetComponent<Transform>().position.y)
             {
                 GetComponent<Transform>().position = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y - force * Time.deltaTime, GetComponent<Transform>().position.z);
             }
@@ -799,10 +803,14 @@ public class Player_Movement : MonoBehaviour
         _Capacity.SetActive(false);
         Show_Stuff_Bool = false;
         SpeedTravel_Button.SetActive(true);
+
+        map_.transform.position = new Vector3(map_.transform.position.x, map_.transform.position.y, 1);
+        boat.transform.position = new Vector3(boat.transform.position.x, boat.transform.position.y, -1);
+        small_boat.transform.position = new Vector3(small_boat.transform.position.x, small_boat.transform.position.y, 0);
     }
     public void Smaller_Cam()
     {
-        cam.GetComponent<Camera>().orthographicSize = 7;
+        cam.GetComponent<Camera>().orthographicSize = 10;
         Bigger_Camera = false;
         Button_Map.SetActive(true);
         Button_Boat.SetActive(false);
@@ -810,6 +818,8 @@ public class Player_Movement : MonoBehaviour
         SpeedTravel_Button.SetActive(false);
         Button_Basic_Fishing.SetActive(true);
 
+        map_.transform.position = new Vector3(map_.transform.position.x, map_.transform.position.y, -1.5F);
+        small_boat.transform.position = new Vector3(small_boat.transform.position.x, small_boat.transform.position.y, -3);
     }
     void Boat_Movement()
     {
@@ -820,7 +830,6 @@ public class Player_Movement : MonoBehaviour
                 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 target.x += 150;
                 target.y += 100;
-                Debug.Log(target);
                 target.z = 0;
                 Special_Boat_Movement();
             }
@@ -836,46 +845,46 @@ public class Player_Movement : MonoBehaviour
             target = new Vector3(2120, 882, 0);
         }
         //island1
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2350 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2250)
+        else if (Island1_Script.Island_1_Pressed)
         {
-            target = new Vector3(-2118, -1121, 0);
+            Island1_Script.Island_1_Pressed = false;
+            target = new Vector3(-2068, -1171, 0);
         }
         //island2
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1570 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1670 &
-        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2435 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2335)
+        else if (Island2_Script.Island_2_Pressed)
         {
-            target = new Vector3(-2360, -1620, 0);
+            Island2_Script.Island_2_Pressed = false;
+            target = new Vector3(-2228, -1440, 0);
         }
         //island3
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1600 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1700 &
-        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2600 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2500)
+        else if (Island3_Script.Island_3_Pressed)
         {
-            target = new Vector3(-2530, -1650, 0);
+            Island3_Script.Island_3_Pressed = false;
+            target = new Vector3(-2676, -1510, 0);
         }
         //island4
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1310 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1410 &
-        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2420 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2320)
+        else if (Island4_Script.Island_4_Pressed)
         {
-            target = new Vector3(-2330, -1360, 0);
+            Island4_Script.Island_4_Pressed = false;
+            target = new Vector3(-2257, -1021, 0);
         }
         //island5
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1460 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1560 &
-        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2660 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2560)
+        else if (Island5_Script.Island_5_Pressed)
         {
-            target = new Vector3(-2570, -1510, 0);
+            Island5_Script.Island_5_Pressed = false;
+            target = new Vector3(-2796, -1340, 0);
         }
         //island6
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1280 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1380 &
-        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2580 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2480)
+        else if (Island6_Script.Island_6_Pressed)
         {
-            target = new Vector3(-2500, -1330, 0);
+            Island6_Script.Island_6_Pressed = false;
+            target = new Vector3(-2646, -991, 0);
         }
         //island7
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).y < -1450 & Camera.main.ScreenToWorldPoint(Input.mousePosition).y > -1550 &
-        Camera.main.ScreenToWorldPoint(Input.mousePosition).x > -2500 & Camera.main.ScreenToWorldPoint(Input.mousePosition).x < -2400)
+        else if (Island7_Script.Island_7_Pressed)
         {
-            target = new Vector3(-2430, -1500, 0);
+            Island7_Script.Island_7_Pressed = false;
+            target = new Vector3(-2367, -1280, 0);
         }
     }
     void Cam_Movement()
@@ -900,44 +909,44 @@ public class Player_Movement : MonoBehaviour
             Button_Main_Island.SetActive(true);
             Scene_Number = 1;
         }
-        //islan1
-        else if (boat.transform.position.x == -2270 & boat.transform.position.y == -1500 & Bigger_Camera == false)
+        //islan1 
+        else if (boat.transform.position.x == -2068 & boat.transform.position.y == -1171 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 2;
         }
-        //island2
-        else if (boat.transform.position.x == -2360 & boat.transform.position.y == -1620 & Bigger_Camera == false)
+        //island2  
+        else if (boat.transform.position.x == -2228 & boat.transform.position.y == -1440 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 3;
         }
-        //island3
-        else if (boat.transform.position.x == -2530 & boat.transform.position.y == -1650 & Bigger_Camera == false)
+        //island3  
+        else if (boat.transform.position.x == -2676 & boat.transform.position.y == -1510 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 4;
         }
-        //island4
-        else if (boat.transform.position.x == -2330 & boat.transform.position.y == -1360 & Bigger_Camera == false)
+        //island4 
+        else if (boat.transform.position.x == -2257 & boat.transform.position.y == -1021 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 5;
         }
-        //island5
-        else if (boat.transform.position.x == -2570 & boat.transform.position.y == -1510 & Bigger_Camera == false)
+        //island5 
+        else if (boat.transform.position.x == -2796 & boat.transform.position.y == -1340 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 6;
         }
-        //island6
-        else if (boat.transform.position.x == -2500 & boat.transform.position.y == -1330 & Bigger_Camera == false)
+        //island6 
+        else if (boat.transform.position.x == -2646 & boat.transform.position.y == -991 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 7;
         }
-        //island7
-        else if (boat.transform.position.x == -2430 & boat.transform.position.y == -1500 & Bigger_Camera == false)
+        //island7 
+        else if (boat.transform.position.x == -2367 & boat.transform.position.y == -1280 & Bigger_Camera == false)
         {
             Button_Main_Island.SetActive(true);
             Scene_Number = 8;
@@ -3103,9 +3112,9 @@ public class Player_Movement : MonoBehaviour
     }
     public void Give_Poeple_On_Main_Island()
     {
-        if (Boat_Level > 5 & Taking_Poeple == false)
+        if (Boat_Level > 5 & Taking_Poeple)
         {
-            Money += (int)Different * 1000;
+            Money += (int)Different * 1;
             Different = 0;
             Taking_Poeple = false;
             Changing_Capacity();
@@ -3115,10 +3124,13 @@ public class Player_Movement : MonoBehaviour
     }
     public void Food_On_Day_Action()
     {
-        Food_On_Day += 1;
-        Money -= 10;
-        Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
-        Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
+        if(Money >= 10) 
+        {
+            Food_On_Day += 1;
+            Money -= 10;
+            Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
+            Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
+        }
     }
     void What_Part_Of_Day() 
     {
