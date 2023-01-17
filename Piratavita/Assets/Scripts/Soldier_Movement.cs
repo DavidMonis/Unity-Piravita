@@ -38,7 +38,7 @@ public class Soldier_Movement : MonoBehaviour
     }
     void Soldier_Moving()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, 0.03F);
+        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, 0.15F);
     }
 
     void Soldier_Movement_() 

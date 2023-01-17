@@ -530,7 +530,6 @@ public class Player_Movement : MonoBehaviour
             PlayerPrefs.SetFloat("Position_Y", 0);
             random = false;
         }
-        Cheat_Mode();
         //lvl1, island 5
         if (SceneManager.GetActiveScene().buildIndex == 6)
         {
