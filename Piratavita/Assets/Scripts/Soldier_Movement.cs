@@ -28,7 +28,7 @@ public class Soldier_Movement : MonoBehaviour
             if (transform.position.x == Player.transform.position.x & transform.position.y == Player.transform.position.y)
             {
                 Soldier_Moving_Bool = false;
-                Player_Movement.Game_Over = true;
+                Controller_Script.Game_Over = true;
             }
         }
         else 

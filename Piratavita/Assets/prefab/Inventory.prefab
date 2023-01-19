@@ -202,7 +202,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7561406820813283675, guid: 5f6e9de611088be48b6732f26068093d,
+          type: 3}
         m_TargetAssemblyTypeName: Player_Movement, Assembly-CSharp
         m_MethodName: Opening_Inventory
         m_Mode: 1
