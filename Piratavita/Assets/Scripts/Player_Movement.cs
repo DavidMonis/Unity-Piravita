@@ -56,4 +56,33 @@ public class Player_Movement : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= 1)
+        {
+            if (collision.name == "Market")
+            {
+                Controller_Script.Standing_On_Market = true;
+                Controller_Script.Button_Market.SetActive(true);
+            }
+
+        }
+        if (collision.tag == "Soldier")
+        {
+            Soldier_Movement.Soldier_Moving_Bool = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= 0)
+        {
+            if (collision.name == "Market")
+            {
+                Controller_Script.Standing_On_Market = false;
+                Controller_Script.Button_Market.SetActive(false);
+                Controller_Script.Market_Menu.SetActive(false);
+                Controller_Script.Button_Market2.SetActive(false);
+            }
+        }
+    }
 }

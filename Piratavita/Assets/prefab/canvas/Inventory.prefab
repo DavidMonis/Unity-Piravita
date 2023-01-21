@@ -202,9 +202,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7561406820813283675, guid: 5f6e9de611088be48b6732f26068093d,
+      - m_Target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
           type: 3}
-        m_TargetAssemblyTypeName: Player_Movement, Assembly-CSharp
+        m_TargetAssemblyTypeName: Controller_Script, Assembly-CSharp
         m_MethodName: Opening_Inventory
         m_Mode: 1
         m_Arguments:

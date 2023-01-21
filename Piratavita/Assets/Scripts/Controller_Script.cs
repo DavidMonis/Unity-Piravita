@@ -447,9 +447,9 @@ public class Controller_Script : MonoBehaviour
     GameObject Inventory_Table;
 
     GameObject Leave_Island_Button;
-    private GameObject Button_Market;
-    GameObject Button_Market2;
-    GameObject Market_Menu;
+    public static GameObject Button_Market;
+    public static GameObject Button_Market2;
+    public static GameObject Market_Menu;
     bool Show_Stuff_Bool;
     GameObject Food_Stuff;
     GameObject Weapons_Stuff;
@@ -475,7 +475,7 @@ public class Controller_Script : MonoBehaviour
     private Vector3 target;
     private int Scene_Number = 0;
 
-    bool Standing_On_Market;
+    public static bool Standing_On_Market;
 
     bool Touching_Special;
     bool Touching_Special1;
@@ -682,8 +682,8 @@ public class Controller_Script : MonoBehaviour
             Buing_Price_Text = GameObject.Find("/Canvas/Buing/Price");
 
             Leave_Island_Button.SetActive(false);
-            Button_Market.SetActive(false);
             Market_Menu.SetActive(false);
+            Button_Market.SetActive(false);
             Button_Market2.SetActive(false);
             Buing.SetActive(false);
         }
