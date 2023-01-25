@@ -150,6 +150,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Upgrading_Boat
       objectReference: {fileID: 0}
+    - target: {fileID: 597444126448848401, guid: 39d0b89b606f5e544b3769d2b15e6715,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4458444985092688680, guid: 39d0b89b606f5e544b3769d2b15e6715,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -504,6 +504,7 @@ public class Controller_Script : MonoBehaviour
     GameObject Lvl5_Button;
     GameObject Lvl6_Button;
     GameObject Lvl7_Button;
+    GameObject Lvl_Special_Button;
 
     GameObject SpeedTravel_Button;
 
