@@ -83,6 +83,7 @@ public class Player_Movement : MonoBehaviour
                 Controller_Script.Market_Menu.SetActive(false);
                 Controller_Script.Button_Market2.SetActive(false);
             }
+
         }
     }
 }

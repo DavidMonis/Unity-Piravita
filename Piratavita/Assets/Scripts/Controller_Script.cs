@@ -535,7 +535,7 @@ public class Controller_Script : MonoBehaviour
     }
     void Start()
     {
-
+        Cheat_Mode();
         if (random)
         {
             PlayerPrefs.SetFloat("Position_X", 0);
@@ -3095,7 +3095,7 @@ public class Controller_Script : MonoBehaviour
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString() + "/" + Max_Capacity_t.ToString() + " t";
         }
     }
-    public void Give_Poeple_On_Main_Island()
+    public void Give_Poeple_On_Island_7()
     {
         if (Boat_Level > 5 & Taking_Poeple)
         {
