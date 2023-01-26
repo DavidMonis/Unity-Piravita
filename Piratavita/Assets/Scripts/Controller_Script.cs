@@ -526,10 +526,10 @@ public class Controller_Script : MonoBehaviour
     GameObject Soldier;
     void Cheat_Mode()
     {
-        Money = 9000000;
+        Money = 10;
         Max_Capacity_t = 1000;
         Food_On_Day = 1000;
-        Boat_Level = 10;
+        Boat_Level = 7;
         Boat_Force = 5;
         Food_On_Day = 1000;
         force = 50;
@@ -657,6 +657,62 @@ public class Controller_Script : MonoBehaviour
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL0";
                 player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL0/Player");
+            }
+            else if (Boat_Level == 1)
+            {
+                Instantiate(Boat_LVL1, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL1(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL1";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL1/Player");
+            }
+            else if (Boat_Level == 2)
+            {
+                Instantiate(Boat_LVL2, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL2(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL2";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL2/Player");
+            }
+            else if (Boat_Level == 3)
+            {
+                Instantiate(Boat_LVL3, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL3(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL3";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL3/Player");
+            }
+            else if (Boat_Level == 4)
+            {
+                Instantiate(Boat_LVL4, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL4(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL4";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL4/Player");
+            }
+            else if (Boat_Level == 5)
+            {
+                Instantiate(Boat_LVL5, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL5(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL5";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL5/Player");
+            }
+            else if (Boat_Level == 6)
+            {
+                Instantiate(Boat_LVL6, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL6(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL6";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL6/Player");
+            }
+            else if (Boat_Level == 7)
+            {
+                Instantiate(Boat_LVL7, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Current_Boat = GameObject.Find("Boat_LVL7(Clone)");
+                Current_Boat.transform.parent = small_boat.transform;
+                Current_Boat.name = "Boat_LVL7";
+                player_gameobject = GameObject.Find("/Boat/Boat 1/Boat_LVL7/Player");
             }
         }
         //islands

@@ -11,7 +11,10 @@ public class Player_Movement : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            small_boat = GameObject.Find("/Boat/Boat 1");
+            string name = "/Boat/Boat 1/Boat_LVL";
+            name += Controller_Script.Boat_Level.ToString();
+            small_boat = GameObject.Find(name);
+            Debug.Log(name);
         }
     }
     private void Update()

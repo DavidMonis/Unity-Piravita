@@ -9050,6 +9050,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8367180223850853156, guid: ceffec8057320394f8b9514f51fc88fa,
         type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL1
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: eb98b69e42cf16143ae84f2c175e6340,
+        type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL2
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: a6262578dca7f6442b54245105268684,
+        type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL3
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: e9613cb0911070149b171b6c9c9eae3b,
+        type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL4
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: 9c93cf42acd6c6f41b671914ec86e7f2,
+        type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL5
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: 6335e3045f784834483a780aae99a304,
+        type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL6
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: cac498186f941bc498de3bae4c2078e0,
+        type: 3}
+    - target: {fileID: 7130956304037461720, guid: 11362840f2e7bc74480392c6a98a5471,
+        type: 3}
+      propertyPath: Boat_LVL7
+      value: 
+      objectReference: {fileID: 8367180223850853156, guid: 344e50c8e8119bb47a52d7470a527bbb,
+        type: 3}
     - target: {fileID: 7130956304037461721, guid: 11362840f2e7bc74480392c6a98a5471,
         type: 3}
       propertyPath: m_Name

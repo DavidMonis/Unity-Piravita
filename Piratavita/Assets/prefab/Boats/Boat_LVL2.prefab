@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8367180223850853156}
   - component: {fileID: 8367180223850853155}
   m_Layer: 0
-  m_Name: Boat_LVL1
+  m_Name: Boat_LVL2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5fef7ee87526aaf4895bb9946d070a32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 782df4cbea0c778468fb9981215a65cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
