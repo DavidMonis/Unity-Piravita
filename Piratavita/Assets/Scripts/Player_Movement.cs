@@ -77,6 +77,10 @@ public class Player_Movement : MonoBehaviour
         }
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
+            if (collision.tag == "Boat_Border")
+            {
+                Controller_Script.Touching_Basic = true;
+            }
             //special fish
             if (collision.tag == "Special1")
             {
@@ -151,6 +155,16 @@ public class Player_Movement : MonoBehaviour
             Soldier_Movement.Soldier_Moving_Bool = true;
         }
     }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (collision.tag == "Boat_Border")
+            {
+                Controller_Script.Touching_Basic = true;
+            }
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (SceneManager.GetActiveScene().buildIndex >= 0)
@@ -171,6 +185,10 @@ public class Player_Movement : MonoBehaviour
             }
             if (SceneManager.GetActiveScene().buildIndex == 0)
             {
+                if (collision.tag == "Boat_Border")
+                {
+                    Controller_Script.Touching_Basic = false;
+                }
                 //special fish
                 if (collision.tag == "Special1")
                 {

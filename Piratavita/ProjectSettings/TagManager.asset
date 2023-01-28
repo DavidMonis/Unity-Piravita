@@ -18,6 +18,8 @@ TagManager:
   - Whale2
   - Whale3
   - Soldier
+  - Boat_Border
+  - Boat_Harpoon
   layers:
   - Default
   - TransparentFX

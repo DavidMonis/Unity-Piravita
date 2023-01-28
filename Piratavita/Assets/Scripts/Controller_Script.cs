@@ -477,6 +477,8 @@ public class Controller_Script : MonoBehaviour
 
     public static bool Standing_On_Market;
 
+    public static bool Touching_Basic;
+
     public static bool Touching_Special;
     public static bool Touching_Special1;
     public static bool Touching_Special2;
@@ -526,13 +528,13 @@ public class Controller_Script : MonoBehaviour
     GameObject Soldier;
     void Cheat_Mode()
     {
-        Money = 10;
+        //Money = 9999999;
         Max_Capacity_t = 1000;
         Food_On_Day = 1000;
         Boat_Level = 7;
         Boat_Force = 5;
         Food_On_Day = 1000;
-        force = 50;
+       // force = 50;
     }
     void Start()
     {
@@ -999,192 +1001,6 @@ public class Controller_Script : MonoBehaviour
             Scene_Number = 0;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
-        {
-            if (collision.name == "Market")
-            {
-                Standing_On_Market = true;
-                Button_Market.SetActive(true);
-            }
-            if (collision.name == "Pub")
-            {
-                Button_Pub.SetActive(true);
-                Standing_On_Pub = true;
-
-            }
-
-        }
-
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            //special fish
-            if (collision.tag == "Special1")
-            {
-                Touching_Special1 = true;
-                Touching_Special = true;
-            }
-            else if (collision.tag == "Special2")
-            {
-                Touching_Special = true;
-                Touching_Special2 = true;
-            }
-            else if (collision.tag == "Special3")
-            {
-                Touching_Special = true;
-                Touching_Special3 = true;
-            }
-            else if (collision.tag == "Special4")
-            {
-                Touching_Special = true;
-                Touching_Special4 = true;
-            }
-            else if (collision.tag == "Special5")
-            {
-                Touching_Special = true;
-                Touching_Special5 = true;
-            }
-            //heavy fish
-            if (collision.tag == "Heavy1")
-            {
-                Touching_Heavy1 = true;
-                Touching_Heavy = true;
-            }
-            else if (collision.tag == "Heavy2")
-            {
-                Touching_Heavy = true;
-                Touching_Heavy2 = true;
-            }
-            else if (collision.tag == "Heavy3")
-            {
-                Touching_Heavy = true;
-                Touching_Heavy3 = true;
-            }
-            else if (collision.tag == "Heavy4")
-            {
-                Touching_Heavy = true;
-                Touching_Heavy4 = true;
-            }
-            else if (collision.tag == "Heavy5")
-            {
-                Touching_Heavy = true;
-                Touching_Heavy5 = true;
-            }
-            //whale fish
-            if (collision.tag == "Whale1")
-            {
-                Touching_Whale1 = true;
-                Touching_Whale = true;
-            }
-            else if (collision.tag == "Whale2")
-            {
-                Touching_Whale = true;
-                Touching_Whale2 = true;
-            }
-            else if (collision.tag == "Whale3")
-            {
-                Touching_Whale = true;
-                Touching_Whale3 = true;
-            }
-
-        }
-        if (collision.tag == "Soldier")
-        {
-            Soldier_Movement.Soldier_Moving_Bool = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (SceneManager.GetActiveScene().buildIndex >= 0)
-        {
-            if (collision.name == "Market")
-            {
-                Standing_On_Market = false;
-                Button_Market.SetActive(false);
-                Market_Menu.SetActive(false);
-                Button_Market2.SetActive(false);
-            }
-            if (collision.name == "Pub")
-            {
-                Button_Pub.SetActive(false);
-                Panel_Pub.SetActive(false);
-                Standing_On_Pub = false;
-                random2 = false;
-            }
-        }
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            //special fish
-            if (collision.tag == "Special1")
-            {
-                Touching_Special = false;
-                Touching_Special1 = false;
-            }
-            else if (collision.tag == "Special2")
-            {
-                Touching_Special = false;
-                Touching_Special2 = false;
-            }
-            else if (collision.tag == "Special3")
-            {
-                Touching_Special = false;
-                Touching_Special3 = false;
-            }
-            else if (collision.tag == "Special4")
-            {
-                Touching_Special = false;
-                Touching_Special4 = false;
-            }
-            else if (collision.tag == "Special5")
-            {
-                Touching_Special = false;
-                Touching_Special5 = false;
-            }
-            //heavy fish
-            if (collision.tag == "Heavy1")
-            {
-                Touching_Heavy1 = false;
-                Touching_Heavy = false;
-            }
-            else if (collision.tag == "Heavy2")
-            {
-                Touching_Heavy = false;
-                Touching_Heavy2 = false;
-            }
-            else if (collision.tag == "Heavy3")
-            {
-                Touching_Heavy = false;
-                Touching_Heavy3 = false;
-            }
-            else if (collision.tag == "Heavy4")
-            {
-                Touching_Heavy = false;
-                Touching_Heavy4 = false;
-            }
-            else if (collision.tag == "Heavy5")
-            {
-                Touching_Heavy = false;
-                Touching_Heavy5 = false;
-            }
-            //whale fish
-            if (collision.tag == "Whale1")
-            {
-                Touching_Whale1 = false;
-                Touching_Whale = false;
-            }
-            else if (collision.tag == "Whale2")
-            {
-                Touching_Whale = false;
-                Touching_Whale2 = false;
-            }
-            else if (collision.tag == "Whale3")
-            {
-                Touching_Whale = false;
-                Touching_Whale3 = false;
-            }
-        }
-    }
     void Add_Constanst()
     {
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
@@ -1399,7 +1215,7 @@ public class Controller_Script : MonoBehaviour
     }
     void Touching_Special_Area()
     {
-        if (Boat_Level > 0 & Touching_Special & Bigger_Camera == false)
+        if (Boat_Level > 0 & Touching_Special & Bigger_Camera == false & Touching_Basic)
         {
             Button_Special_Fishing.SetActive(true);
         }
@@ -1422,6 +1238,14 @@ public class Controller_Script : MonoBehaviour
         else
         {
             Button_Whale_Fishing.SetActive(false);
+        }
+        if (Bigger_Camera == false & Touching_Basic)
+        {
+            Button_Basic_Fishing.SetActive(true);
+        }
+        else
+        {
+            Button_Basic_Fishing.SetActive(false);
         }
     }
 
