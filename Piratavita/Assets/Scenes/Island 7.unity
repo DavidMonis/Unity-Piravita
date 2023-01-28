@@ -368,6 +368,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 971236001}
     m_Modifications:
+    - target: {fileID: 5956603781884583107, guid: 282765c9139c3e84da2e508937bab01b,
+        type: 3}
+      propertyPath: m_text
+      value: Take Poeple of Boat
+      objectReference: {fileID: 0}
     - target: {fileID: 5956603782166512610, guid: 282765c9139c3e84da2e508937bab01b,
         type: 3}
       propertyPath: m_Pivot.x

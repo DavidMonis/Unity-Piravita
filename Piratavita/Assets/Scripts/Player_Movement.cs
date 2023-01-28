@@ -14,7 +14,6 @@ public class Player_Movement : MonoBehaviour
             string name = "/Boat/Boat 1/Boat_LVL";
             name += Controller_Script.Boat_Level.ToString();
             small_boat = GameObject.Find(name);
-            Debug.Log(name);
         }
     }
     private void Update()
@@ -68,7 +67,84 @@ public class Player_Movement : MonoBehaviour
                 Controller_Script.Standing_On_Market = true;
                 Controller_Script.Button_Market.SetActive(true);
             }
+            if (collision.name == "Pub")
+            {
+                Controller_Script.Button_Pub.SetActive(true);
+                Controller_Script.Standing_On_Pub = true;
 
+            }
+
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            //special fish
+            if (collision.tag == "Special1")
+            {
+                Controller_Script.Touching_Special1 = true;
+                Controller_Script.Touching_Special = true;
+            }
+            else if (collision.tag == "Special2")
+            {
+                Controller_Script.Touching_Special = true;
+                Controller_Script.Touching_Special2 = true;
+            }
+            else if (collision.tag == "Special3")
+            {
+                Controller_Script.Touching_Special = true;
+                Controller_Script.Touching_Special3 = true;
+            }
+            else if (collision.tag == "Special4")
+            {
+                Controller_Script.Touching_Special = true;
+                Controller_Script.Touching_Special4 = true;
+            }
+            else if (collision.tag == "Special5")
+            {
+                Controller_Script.Touching_Special = true;
+                Controller_Script.Touching_Special5 = true;
+            }
+            //heavy fish
+            if (collision.tag == "Heavy1")
+            {
+                Controller_Script.Touching_Heavy1 = true;
+                Controller_Script.Touching_Heavy = true;
+            }
+            else if (collision.tag == "Heavy2")
+            {
+                Controller_Script.Touching_Heavy = true;
+                Controller_Script.Touching_Heavy2 = true;
+            }
+            else if (collision.tag == "Heavy3")
+            {
+                Controller_Script.Touching_Heavy = true;
+                Controller_Script.Touching_Heavy3 = true;
+            }
+            else if (collision.tag == "Heavy4")
+            {
+                Controller_Script.Touching_Heavy = true;
+                Controller_Script.Touching_Heavy4 = true;
+            }
+            else if (collision.tag == "Heavy5")
+            {
+                Controller_Script.Touching_Heavy = true;
+                Controller_Script.Touching_Heavy5 = true;
+            }
+            //whale fish
+            if (collision.tag == "Whale1")
+            {
+                Controller_Script.Touching_Whale1 = true;
+                Controller_Script.Touching_Whale = true;
+            }
+            else if (collision.tag == "Whale2")
+            {
+                Controller_Script.Touching_Whale = true;
+                Controller_Script.Touching_Whale2 = true;
+            }
+            else if (collision.tag == "Whale3")
+            {
+                Controller_Script.Touching_Whale = true;
+                Controller_Script.Touching_Whale3 = true;
+            }
         }
         if (collision.tag == "Soldier")
         {
@@ -86,7 +162,84 @@ public class Player_Movement : MonoBehaviour
                 Controller_Script.Market_Menu.SetActive(false);
                 Controller_Script.Button_Market2.SetActive(false);
             }
-
+            if (collision.name == "Pub")
+            {
+                Controller_Script.Button_Pub.SetActive(false);
+                Controller_Script.Panel_Pub.SetActive(false);
+                Controller_Script.Standing_On_Pub = false;
+                Controller_Script.random2 = false;
+            }
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                //special fish
+                if (collision.tag == "Special1")
+                {
+                    Controller_Script.Touching_Special = false;
+                    Controller_Script.Touching_Special1 = false;
+                }
+                else if (collision.tag == "Special2")
+                {
+                    Controller_Script.Touching_Special = false;
+                    Controller_Script.Touching_Special2 = false;
+                }
+                else if (collision.tag == "Special3")
+                {
+                    Controller_Script.Touching_Special = false;
+                    Controller_Script.Touching_Special3 = false;
+                }
+                else if (collision.tag == "Special4")
+                {
+                    Controller_Script.Touching_Special = false;
+                    Controller_Script.Touching_Special4 = false;
+                }
+                else if (collision.tag == "Special5")
+                {
+                    Controller_Script.Touching_Special = false;
+                    Controller_Script.Touching_Special5 = false;
+                }
+                //heavy fish
+                if (collision.tag == "Heavy1")
+                {
+                    Controller_Script.Touching_Heavy1 = false;
+                    Controller_Script.Touching_Heavy = false;
+                }
+                else if (collision.tag == "Heavy2")
+                {
+                    Controller_Script.Touching_Heavy = false;
+                    Controller_Script.Touching_Heavy2 = false;
+                }
+                else if (collision.tag == "Heavy3")
+                {
+                    Controller_Script.Touching_Heavy = false;
+                    Controller_Script.Touching_Heavy3 = false;
+                }
+                else if (collision.tag == "Heavy4")
+                {
+                    Controller_Script.Touching_Heavy = false;
+                    Controller_Script.Touching_Heavy4 = false;
+                }
+                else if (collision.tag == "Heavy5")
+                {
+                    Controller_Script.Touching_Heavy = false;
+                    Controller_Script.Touching_Heavy5 = false;
+                }
+                //whale fish
+                if (collision.tag == "Whale1")
+                {
+                    Controller_Script.Touching_Whale1 = false;
+                    Controller_Script.Touching_Whale = false;
+                }
+                else if (collision.tag == "Whale2")
+                {
+                    Controller_Script.Touching_Whale = false;
+                    Controller_Script.Touching_Whale2 = false;
+                }
+                else if (collision.tag == "Whale3")
+                {
+                    Controller_Script.Touching_Whale = false;
+                    Controller_Script.Touching_Whale3 = false;
+                }
+            }
         }
     }
 }

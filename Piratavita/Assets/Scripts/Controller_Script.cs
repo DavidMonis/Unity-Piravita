@@ -477,24 +477,24 @@ public class Controller_Script : MonoBehaviour
 
     public static bool Standing_On_Market;
 
-    bool Touching_Special;
-    bool Touching_Special1;
-    bool Touching_Special2;
-    bool Touching_Special3;
-    bool Touching_Special4;
-    bool Touching_Special5;
+    public static bool Touching_Special;
+    public static bool Touching_Special1;
+    public static bool Touching_Special2;
+    public static bool Touching_Special3;
+    public static bool Touching_Special4;
+    public static bool Touching_Special5;
 
-    bool Touching_Heavy;
-    bool Touching_Heavy1;
-    bool Touching_Heavy2;
-    bool Touching_Heavy3;
-    bool Touching_Heavy4;
-    bool Touching_Heavy5;
+    public static bool Touching_Heavy;
+    public static bool Touching_Heavy1;
+    public static bool Touching_Heavy2;
+    public static bool Touching_Heavy3;
+    public static bool Touching_Heavy4;
+    public static bool Touching_Heavy5;
 
-    bool Touching_Whale;
-    bool Touching_Whale1;
-    bool Touching_Whale2;
-    bool Touching_Whale3;
+    public static bool Touching_Whale;
+    public static bool Touching_Whale1;
+    public static bool Touching_Whale2;
+    public static bool Touching_Whale3;
 
     //lvl
     GameObject Lvl1_Button;
@@ -510,12 +510,12 @@ public class Controller_Script : MonoBehaviour
 
     public static bool random = true;
     bool random1 = false;
-    bool random2 = false;
+    public static bool random2 = false;
     int Time_Element = 1;
 
-    GameObject Button_Pub;
-    GameObject Panel_Pub;
-    bool Standing_On_Pub;
+    static public GameObject Button_Pub;
+    static public GameObject Panel_Pub;
+    static public bool Standing_On_Pub;
     static public bool Taking_Poeple;
     static public double Different;
 
@@ -1012,6 +1012,7 @@ public class Controller_Script : MonoBehaviour
             {
                 Button_Pub.SetActive(true);
                 Standing_On_Pub = true;
+
             }
 
         }
