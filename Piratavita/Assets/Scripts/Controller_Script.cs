@@ -42,13 +42,13 @@ public class Main_Island
 
     static public float Gunpowder_Price = 8;
     static public float Bullets_Price = 6;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vaha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 65; //vaha pistole je 1KG
     static public float Rifle_Price = 50; //vaha rifle je 4KG
-    static public float Dagger_Price = 45; //váha dýky je 250G
-    static public float Knife_Price = 40; //váha noža je 0.5KG
-    static public float Sword_Price = 50; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 45; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 40; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 50; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.2F;
     static public float Gravel_Price = 0.2F;
@@ -78,13 +78,13 @@ public class Island1
 
     static public float Gunpowder_Price = 25;
     static public float Bullets_Price = 15;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 100; //vaha pistole je 1KG
     static public float Rifle_Price = 75; //vaha rifle je 4KG
-    static public float Dagger_Price = 26; //váha dýky je 250G
-    static public float Knife_Price = 23; //váha noža je 0.5KG
-    static public float Sword_Price = 19; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 26; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 23; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 19; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.5F;
     static public float Gravel_Price = 0.5F;
@@ -113,13 +113,13 @@ public class Island2
 
     static public float Gunpowder_Price = 20;
     static public float Bullets_Price = 15;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 100; //vaha pistole je 1KG
     static public float Rifle_Price = 75; //vaha rifle je 4KG
-    static public float Dagger_Price = 35; //váha dýky je 250G
-    static public float Knife_Price = 30; //váha noža je 0.5KG
-    static public float Sword_Price = 25; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 35; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 30; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 25; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.4F;
     static public float Gravel_Price = 0.4F;
@@ -148,13 +148,13 @@ public class Island3
 
     static public float Gunpowder_Price = 15;
     static public float Bullets_Price = 15;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 100; //vaha pistole je 1KG
     static public float Rifle_Price = 75; //vaha rifle je 4KG
-    static public float Dagger_Price = 35; //váha dýky je 250G
-    static public float Knife_Price = 30; //váha noža je 0.5KG
-    static public float Sword_Price = 25; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 35; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 30; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 25; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.5F;
     static public float Gravel_Price = 0.5F;
@@ -183,13 +183,13 @@ public class Island4
 
     static public float Gunpowder_Price = 20;
     static public float Bullets_Price = 15;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 100; //vaha pistole je 1KG
     static public float Rifle_Price = 75; //vaha rifle je 4KG
-    static public float Dagger_Price = 35; //váha dýky je 250G
-    static public float Knife_Price = 30; //váha noža je 0.5KG
-    static public float Sword_Price = 25; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 35; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 30; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 25; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.6F;
     static public float Gravel_Price = 0.6F;
@@ -218,13 +218,13 @@ public class Island5
 
     static public float Gunpowder_Price = 20;
     static public float Bullets_Price = 15;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 100; //vaha pistole je 1KG
     static public float Rifle_Price = 75; //vaha rifle je 4KG
-    static public float Dagger_Price = 35; //váha dýky je 250G
-    static public float Knife_Price = 30; //váha noža je 0.5KG
-    static public float Sword_Price = 25; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 35; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 30; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 25; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.6F;
     static public float Gravel_Price = 0.6F;
@@ -253,13 +253,13 @@ public class Island6
 
     static public float Gunpowder_Price = 20;
     static public float Bullets_Price = 11.3F;
-    static public float Cannon_Price = 1.5F; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 3.8F; //váha gule je 20kg
+    static public float Cannon_Price = 1.5F; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 3.8F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 75; //vaha pistole je 1KG
     static public float Rifle_Price = 56.3F; //vaha rifle je 4KG
-    static public float Dagger_Price = 35; //váha dýky je 250G
-    static public float Knife_Price = 30; //váha noža je 0.5KG
-    static public float Sword_Price = 18.8F; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 35; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 30; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 18.8F; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.5F;
     static public float Gravel_Price = 0.5F;
@@ -288,13 +288,13 @@ public class Island7
 
     static public float Gunpowder_Price = 20;
     static public float Bullets_Price = 15;
-    static public float Cannon_Price = 2; //váha canonu je 2t
-    static public float Cannon_Ball_Price = 5F; //váha gule je 20kg
+    static public float Cannon_Price = 2; //vï¿½ha canonu je 2t
+    static public float Cannon_Ball_Price = 5F; //vï¿½ha gule je 20kg
     static public float Pistol_Price = 100; //vaha pistole je 1KG
     static public float Rifle_Price = 75; //vaha rifle je 4KG
-    static public float Dagger_Price = 35; //váha dýky je 250G
-    static public float Knife_Price = 30; //váha noža je 0.5KG
-    static public float Sword_Price = 25; //váha jednoruèného meèa 1KG
+    static public float Dagger_Price = 35; //vï¿½ha dï¿½ky je 250G
+    static public float Knife_Price = 30; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword_Price = 25; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick_Price = 0.5F;
     static public float Gravel_Price = 0.5F;
@@ -329,6 +329,8 @@ public class Controller_Script : MonoBehaviour
     public Transform Boat_LVL6;
     public Transform Boat_LVL7;
     GameObject Current_Boat;
+    int Boat_Price = 100000;
+    int Number_Of_Boat=1;
 
     public static int How_Many_Soldiers;
     bool State_Day;
@@ -367,13 +369,13 @@ public class Controller_Script : MonoBehaviour
 
     static public float Gunpowder;
     static public float Bullets;
-    static public float Cannon;//váha canonu je 2t
-    static public float Cannon_Ball; //váha gule je 20kg
+    static public float Cannon;//vï¿½ha canonu je 2t
+    static public float Cannon_Ball; //vï¿½ha gule je 20kg
     static public float Pistol; //vaha pistole je 1KG
     static public float Rifle; //vaha rifle je 4KG
-    static public float Dagger; //váha dýky je 250G
-    static public float Knife; //váha noža je 0.5KG
-    static public float Sword; //váha jednoruèného meèa 1KG
+    static public float Dagger; //vï¿½ha dï¿½ky je 250G
+    static public float Knife; //vï¿½ha noï¿½a je 0.5KG
+    static public float Sword; //vï¿½ha jednoruï¿½nï¿½ho meï¿½a 1KG
 
     static public float Brick;
     static public float Gravel;
@@ -445,6 +447,7 @@ public class Controller_Script : MonoBehaviour
     GameObject Button_Whale_Fishing;
     GameObject Inventory_Button;
     GameObject Inventory_Table;
+    public static GameObject Buing_Boat;
 
     GameObject Leave_Island_Button;
     public static GameObject Button_Market;
@@ -530,10 +533,10 @@ public class Controller_Script : MonoBehaviour
     GameObject Soldier;
     void Cheat_Mode()
     {
-        //Money = 9999999;
+        Money = 9999999;
         Max_Capacity_t = 1000;
         Food_On_Day = 1000;
-        Boat_Level = 3;
+        Boat_Level = 4;
         Boat_Force = 5;
         Food_On_Day = 1000;
        // force = 50;
@@ -586,6 +589,8 @@ public class Controller_Script : MonoBehaviour
             Panel_Pub = GameObject.Find("/Canvas/Pub_Panel");
             Button_Pub.SetActive(false);
             Panel_Pub.SetActive(false);
+            Buing_Boat = GameObject.Find("/Canvas/MarketText/Buy_Boat");
+            Buing_Boat.SetActive(false);
         }
         //lvl7, main island
         else if (SceneManager.GetActiveScene().buildIndex == 1)
@@ -1213,7 +1218,7 @@ public class Controller_Script : MonoBehaviour
         {
             Actual_Capacity_t = Max_Capacity_t;
         }
-        //váha canonu je 2t,váha gule je 20kg,vaha pistole je 1KG,vaha rifle je 4KG,váha dýky je 250G,váha noža je 0.5KG,váha jednoruèného meèa 2KG
+        //vï¿½ha canonu je 2t,vï¿½ha gule je 20kg,vaha pistole je 1KG,vaha rifle je 4KG,vï¿½ha dï¿½ky je 250G,vï¿½ha noï¿½a je 0.5KG,vï¿½ha jednoruï¿½nï¿½ho meï¿½a 2KG
     }
     void Touching_Special_Area()
     {
@@ -1266,6 +1271,7 @@ public class Controller_Script : MonoBehaviour
             Weapons_Stuff.SetActive(false);
             Materials_Stuff.SetActive(false);
             Fishes_Stuff.SetActive(false);
+            Buing_Boat.SetActive(true);
 
             //lvl1, island 5
             if (SceneManager.GetActiveScene().buildIndex == 6 & Boat_Level == 0)
@@ -1312,7 +1318,9 @@ public class Controller_Script : MonoBehaviour
         {
             Market_Menu.SetActive(false);
             Button_Market2.SetActive(false);
+            Buing_Boat.SetActive(true);
             Button_Market.SetActive(true);
+            Buing_Boat.SetActive(false);
         }
 
     }
@@ -1380,7 +1388,11 @@ public class Controller_Script : MonoBehaviour
     }
     public void Sell()
     {
-
+        if (Buing_Item == "Boat" & Number_Of_Boat > 1)
+        {
+            Money += Buing_Price;
+            Number_Of_Boat -= 1;
+        }
         if (Buing_Item == "Bread" & Bread >= 1)
         {
             Money += Buing_Price;
@@ -1611,7 +1623,11 @@ public class Controller_Script : MonoBehaviour
     {
         if (Boat_Level > 3)
         {
-
+            if (Buing_Item == "Boat" & Money >= Buing_Price & Boat_Level > 6)
+            {
+                Money -= Buing_Price;
+                Number_Of_Boat += 1;
+            }
             if (Buing_Item == "Bread" & Money >= Buing_Price)
             {
                 Money -= Buing_Price;
@@ -1844,6 +1860,10 @@ public class Controller_Script : MonoBehaviour
     {
         Buing.SetActive(true);
         Buing_Item = item;
+        if (Buing_Item == "Boat")
+        {
+            Buing_Price = Boat_Price;
+        }
         if (Buing_Item == "Basic_Fish")
         {
             Buing_Price = Fish_Price.Basic_Fish_Price;

@@ -184,6 +184,7 @@ public class Player_Movement : MonoBehaviour
                 Controller_Script.Button_Market.SetActive(false);
                 Controller_Script.Market_Menu.SetActive(false);
                 Controller_Script.Button_Market2.SetActive(false);
+                Controller_Script.Buing_Boat.SetActive(false);
             }
             if (collision.name == "Pub")
             {
