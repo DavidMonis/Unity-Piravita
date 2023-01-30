@@ -81,6 +81,15 @@ public class Player_Movement : MonoBehaviour
             {
                 Controller_Script.Touching_Basic = true;
             }
+            if (collision.name == "small_harpoon") 
+            {
+                Controller_Script.Touching_Small_Harpoon = true;
+            }
+            if (collision.name == "harpoon")
+            {
+                Controller_Script.Touching_Small_Harpoon = true;
+                Controller_Script.Touching_Big_Harpoon = true;
+            }
             //special fish
             if (collision.tag == "Special1")
             {
@@ -188,6 +197,15 @@ public class Player_Movement : MonoBehaviour
                 if (collision.tag == "Boat_Border")
                 {
                     Controller_Script.Touching_Basic = false;
+                }
+                if (collision.name == "small_harpoon")
+                {
+                    Controller_Script.Touching_Small_Harpoon = false;
+                }
+                if (collision.name == "harpoon")
+                {
+                    Controller_Script.Touching_Small_Harpoon = false;
+                    Controller_Script.Touching_Big_Harpoon = false;
                 }
                 //special fish
                 if (collision.tag == "Special1")

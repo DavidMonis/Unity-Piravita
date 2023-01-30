@@ -478,6 +478,8 @@ public class Controller_Script : MonoBehaviour
     public static bool Standing_On_Market;
 
     public static bool Touching_Basic;
+    public static bool Touching_Small_Harpoon;
+    public static bool Touching_Big_Harpoon;
 
     public static bool Touching_Special;
     public static bool Touching_Special1;
@@ -531,7 +533,7 @@ public class Controller_Script : MonoBehaviour
         //Money = 9999999;
         Max_Capacity_t = 1000;
         Food_On_Day = 1000;
-        Boat_Level = 7;
+        Boat_Level = 3;
         Boat_Force = 5;
         Food_On_Day = 1000;
        // force = 50;
@@ -1223,7 +1225,7 @@ public class Controller_Script : MonoBehaviour
         {
             Button_Special_Fishing.SetActive(false);
         }
-        if (Boat_Level > 1 & Touching_Heavy & Bigger_Camera == false)
+        if (Boat_Level > 1 & Touching_Heavy & Bigger_Camera == false & Touching_Small_Harpoon)
         {
             Button_Heavy_Fishing.SetActive(true);
         }
@@ -1231,7 +1233,7 @@ public class Controller_Script : MonoBehaviour
         {
             Button_Heavy_Fishing.SetActive(false);
         }
-        if (Boat_Level > 2 & Touching_Whale & Bigger_Camera == false)
+        if (Boat_Level > 2 & Touching_Whale & Bigger_Camera == false & Touching_Big_Harpoon)
         {
             Button_Whale_Fishing.SetActive(true);
         }
