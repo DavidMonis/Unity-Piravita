@@ -13,7 +13,6 @@ public class Soldier_Movement : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        Random_Values();
         direction = Random.Range(1,5);
         time = Random.Range(1, 10);
     }
@@ -38,7 +37,7 @@ public class Soldier_Movement : MonoBehaviour
     }
     void Soldier_Moving()
     {
-        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, 0.15F);
+        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, force*Time.deltaTime);
     }
 
     void Soldier_Movement_() 
@@ -113,8 +112,9 @@ public class Soldier_Movement : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x + force * Time.deltaTime, transform.position.y, 0);
     }
-    void Random_Values() 
+    public void SetDirection(int value)
     {
+        direction = value;
         time = 5;
     }
 }

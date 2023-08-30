@@ -9,7 +9,7 @@ public class Player_Movement : MonoBehaviour
     GameObject small_boat;
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 9)
         {
             string name = "/Boat/Boat 1/Boat_LVL";
             name += Controller_Script.Boat_Level.ToString();
@@ -18,7 +18,7 @@ public class Player_Movement : MonoBehaviour
     }
     private void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 9)
         {
             if (Input.GetKey(KeyCode.D) & small_boat.GetComponent<Transform>().position.x + 9 > GetComponent<Transform>().position.x)
             {
@@ -37,7 +37,7 @@ public class Player_Movement : MonoBehaviour
                 GetComponent<Transform>().position = new Vector3(GetComponent<Transform>().position.x, GetComponent<Transform>().position.y - Controller_Script.force * Time.deltaTime, GetComponent<Transform>().position.z);
             }
         }
-        if (SceneManager.GetActiveScene().buildIndex > 0)
+        if (SceneManager.GetActiveScene().buildIndex > 0 & SceneManager.GetActiveScene().buildIndex<9)
         {
             //zmenit
             if (Input.GetKey(KeyCode.D))
@@ -60,7 +60,8 @@ public class Player_Movement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
+
+        if (SceneManager.GetActiveScene().buildIndex >= 1 & SceneManager.GetActiveScene().buildIndex <9)
         {
             if (collision.name == "Market")
             {
@@ -75,7 +76,7 @@ public class Player_Movement : MonoBehaviour
             }
 
         }
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 9)
         {
             if (collision.tag == "Boat_Border")
             {
@@ -166,7 +167,7 @@ public class Player_Movement : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 9)
         {
             if (collision.tag == "Boat_Border")
             {
@@ -176,7 +177,7 @@ public class Player_Movement : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 0)
+        if (SceneManager.GetActiveScene().buildIndex >= 0 & SceneManager.GetActiveScene().buildIndex < 10)
         {
             if (collision.name == "Market")
             {
@@ -184,7 +185,10 @@ public class Player_Movement : MonoBehaviour
                 Controller_Script.Button_Market.SetActive(false);
                 Controller_Script.Market_Menu.SetActive(false);
                 Controller_Script.Button_Market2.SetActive(false);
-                Controller_Script.Buing_Boat.SetActive(false);
+                if (SceneManager.GetActiveScene().buildIndex == 8)
+                {
+                    Controller_Script.Buing_Boat.SetActive(false);
+                }
             }
             if (collision.name == "Pub")
             {
@@ -193,7 +197,7 @@ public class Player_Movement : MonoBehaviour
                 Controller_Script.Standing_On_Pub = false;
                 Controller_Script.random2 = false;
             }
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 9)
             {
                 if (collision.tag == "Boat_Border")
                 {

@@ -310,15 +310,21 @@ public class Island7
 
 public class Controller_Script : MonoBehaviour
 {
-    private float Boat_Force = 0.0045F;
+    /// <summary>
+    /// Game Statistic (Constant)
+    /// </summary>
+    public static float Boat_Force = 0.3F;
     public static float force = 10;
-    static public float Money = 0;
+    static public float Money = 100;
     static public int Boat_Level = 0;
     static public int Max_Capacity_t = 1;
     static public double Actual_Capacity_t = 0;
     static public int Food_On_Day = 10;
-
     static public bool Game_Over = false;
+
+    /// <summary>
+    /// boat and stuff
+    /// </summary>
     public Transform Soldier_;
     public Transform Boat_LVL0;
     public Transform Boat_LVL1;
@@ -330,30 +336,39 @@ public class Controller_Script : MonoBehaviour
     public Transform Boat_LVL7;
     GameObject Current_Boat;
     int Boat_Price = 100000;
-    int Number_Of_Boat=1;
-
+    public static int Number_Of_Boat=1;
     public static int How_Many_Soldiers;
     bool State_Day;
     static public int Basic_Fish;
-    //types
+
+    /// <summary>
+    /// Special Fish
+    /// </summary>
     static public int Special_Fish1;
     static public int Special_Fish2;
     static public int Special_Fish3;
     static public int Special_Fish4;
     static public int Special_Fish5;
 
-    //types
+    /// <summary>
+    /// Heavy fish
+    /// </summary>
     static public int Heavy_Fish1;
     static public int Heavy_Fish2;
     static public int Heavy_Fish3;
     static public int Heavy_Fish4;
     static public int Heavy_Fish5;
 
-    //types
+    /// <summary>
+    /// Whale fish
+    /// </summary>
     static public int Whale_Fish1;
     static public int Whale_Fish2;
     static public int Whale_Fish3;
-    //market_stuff
+
+    /// <summary>
+    /// Market stuff
+    /// </summary>
     static public float Bread;
     static public float Milk;
     static public float Salt;
@@ -387,6 +402,9 @@ public class Controller_Script : MonoBehaviour
     static public float Rubin;
     static public float Amethyst;
 
+    /// <summary>
+    /// GameObjects (Market and Fish)
+    /// </summary>
     GameObject player_gameobject;
     GameObject Text_Basic_Fish;
     GameObject Text_Special_Fish1;
@@ -515,7 +533,6 @@ public class Controller_Script : MonoBehaviour
 
     GameObject SpeedTravel_Button;
 
-    public static bool random = true;
     bool random1 = false;
     public static bool random2 = false;
     int Time_Element = 1;
@@ -531,25 +548,31 @@ public class Controller_Script : MonoBehaviour
     GameObject Dead_Panel_Text;
 
     GameObject Soldier;
+    [SerializeField]
+    GameObject enemyShip;
+
+    Vector3 startingBoatPosition = new Vector3(-142.6F, -124.3F, -0.1F);
+
+    public static int Boat_Power = 10;
+    /*
+    every boat add 100 power
+    power of enemy boat is 80
+    every boat has money arround 100 000 - 200 000
+    after fight you have damaged boat and you need to repair it (cost 800 per point)
+    */
     void Cheat_Mode()
     {
         Money = 9999999;
         Max_Capacity_t = 1000;
         Food_On_Day = 1000;
-        Boat_Level = 4;
+        Boat_Level = 7;
         Boat_Force = 5;
         Food_On_Day = 1000;
-       // force = 50;
+        Boat_Power = 100;
+        force = 50;
     }
     void Start()
     {
-        Cheat_Mode();
-        if (random)
-        {
-            PlayerPrefs.SetFloat("Position_X", 0);
-            PlayerPrefs.SetFloat("Position_Y", 0);
-            random = false;
-        }
         //lvl1, island 5
         if (SceneManager.GetActiveScene().buildIndex == 6)
         {
@@ -600,7 +623,7 @@ public class Controller_Script : MonoBehaviour
 
             for (int i = 0; i < How_Many_Soldiers; i++)
             {
-                Soldier_Array[i] = Instantiate(Soldier_, transform.position = new Vector3(Random.Range(10, 50), Random.Range(50, -50), 0F), transform.rotation);
+                Soldier_Array[i] = Instantiate(Soldier_, transform.position = new Vector3(Random.Range(20, 60), Random.Range(20, -20), 0F), transform.rotation);
             }
             player_gameobject.transform.position = new Vector3(0, 0, 0);
 
@@ -626,8 +649,13 @@ public class Controller_Script : MonoBehaviour
         Add_Constanst();
         Set_Inventory();
         //sea
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 9)
         {
+            Touching_Basic = false;
+            Touching_Heavy = false;
+            Touching_Special = false;
+            Touching_Whale = false;
+
             map_ = GameObject.Find("Map");
             small_boat = GameObject.Find("/Boat/Boat 1");
             SpeedTravel_Button = GameObject.Find("/Canvas/SpeedTravel");
@@ -656,12 +684,12 @@ public class Controller_Script : MonoBehaviour
             Button_Whale_Fishing.SetActive(false);
             _Capacity.SetActive(false);
             Inventory_Table.SetActive(false);
-            boat.transform.position = new Vector3(PlayerPrefs.GetFloat("Position_X"), PlayerPrefs.GetFloat("Position_Y"), 0);
-            target.x = PlayerPrefs.GetFloat("Position_X");
-            target.y = PlayerPrefs.GetFloat("Position_Y");
+            boat.transform.position = new Vector3(PlayerPrefs.GetFloat("Position_X", 0), PlayerPrefs.GetFloat("Position_Y", 0), 0);
+            target.x = PlayerPrefs.GetFloat("Position_X",0);
+            target.y = PlayerPrefs.GetFloat("Position_Y",0);
             if (Boat_Level == 0)
             {
-                Instantiate(Boat_LVL0, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL0, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL0(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL0";
@@ -669,7 +697,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 1)
             {
-                Instantiate(Boat_LVL1, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL1, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL1(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL1";
@@ -677,7 +705,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 2)
             {
-                Instantiate(Boat_LVL2, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL2, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL2(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL2";
@@ -685,7 +713,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 3)
             {
-                Instantiate(Boat_LVL3, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL3, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL3(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL3";
@@ -693,7 +721,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 4)
             {
-                Instantiate(Boat_LVL4, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL4, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL4(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL4";
@@ -701,7 +729,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 5)
             {
-                Instantiate(Boat_LVL5, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL5, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL5(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL5";
@@ -709,7 +737,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 6)
             {
-                Instantiate(Boat_LVL6, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL6, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL6(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL6";
@@ -717,7 +745,7 @@ public class Controller_Script : MonoBehaviour
             }
             else if (Boat_Level == 7)
             {
-                Instantiate(Boat_LVL7, transform.position = new Vector3(-142.6F, -124.3F, 0), transform.rotation);
+                Instantiate(Boat_LVL7, transform.position = startingBoatPosition, transform.rotation);
                 Current_Boat = GameObject.Find("Boat_LVL7(Clone)");
                 Current_Boat.transform.parent = small_boat.transform;
                 Current_Boat.name = "Boat_LVL7";
@@ -725,7 +753,7 @@ public class Controller_Script : MonoBehaviour
             }
         }
         //islands
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
+        if (SceneManager.GetActiveScene().buildIndex >= 1 & SceneManager.GetActiveScene().buildIndex <= 8)
         {
             player_gameobject = GameObject.Find("Player");
             Inventory_Button = GameObject.Find("/Canvas/Inventory");
@@ -765,15 +793,15 @@ public class Controller_Script : MonoBehaviour
         }
         Time_();
         //movement on the sea
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 9)
         {
             Cam_Movement();
             Boat_Movement();
             Control_Position();
             Touching_Special_Area();
         }
-        //movement on Main Island
-        if (SceneManager.GetActiveScene().buildIndex >= 1)
+        //movement on Island
+        if (SceneManager.GetActiveScene().buildIndex >= 1 & SceneManager.GetActiveScene().buildIndex <= 8)
         {
             Cam_Movement();
             Leaving_Island();
@@ -867,8 +895,12 @@ public class Controller_Script : MonoBehaviour
         Inventory_Button.SetActive(true);
         SpeedTravel_Button.SetActive(false);
         Button_Basic_Fishing.SetActive(true);
-
         small_boat.transform.position = new Vector3(small_boat.transform.position.x, small_boat.transform.position.y, -3);
+
+        Touching_Basic = false;
+        Touching_Heavy = false;
+        Touching_Special = false;
+        Touching_Whale = false;
     }
     void Boat_Movement()
     {
@@ -884,7 +916,7 @@ public class Controller_Script : MonoBehaviour
             }
         }
         target.z = -2;
-        boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, Boat_Force);
+        boat.transform.position = Vector3.MoveTowards(boat.transform.position, target, Boat_Force*Time.deltaTime);
     }
     void Special_Boat_Movement()
     {
@@ -1011,7 +1043,14 @@ public class Controller_Script : MonoBehaviour
     void Add_Constanst()
     {
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
-        Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
+        if(Boat_Level > 6)
+        {
+            Constant_Level.GetComponent<Text>().text = "MAX level, " + Number_Of_Boat + " boats";
+        }
+        else
+        {
+            Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
+        }
         Constant_Time.GetComponent<Text>().text = Time_Hour + ":00";
         Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
         Day.GetComponent<Text>().text = "Day " + Time_Day.ToString();
@@ -1021,8 +1060,11 @@ public class Controller_Script : MonoBehaviour
         if (Actual_Capacity_t + 0.0005 <= Max_Capacity_t)
         {
             Changing_Capacity();
-            Basic_Fish += 1;
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString("N4") + "/" + Max_Capacity_t.ToString() + " t";
+            Fishing.fishingType = 0;
+            PlayerPrefs.SetFloat("Position_X", boat.transform.position.x);
+            PlayerPrefs.SetFloat("Position_Y", boat.transform.position.y);
+            SceneManager.LoadScene(10);
         }
     }
     public void Special_Fishing()
@@ -1031,26 +1073,29 @@ public class Controller_Script : MonoBehaviour
         {
             if (Touching_Special1)
             {
-                Special_Fish1 += 1;
+                Fishing.fishingType = 1;
             }
             else if (Touching_Special2)
             {
-                Special_Fish2 += 1;
+                Fishing.fishingType = 2;
             }
             else if (Touching_Special3)
             {
-                Special_Fish3 += 1;
+                Fishing.fishingType = 3;
             }
             else if (Touching_Special4)
             {
-                Special_Fish4 += 1;
+                Fishing.fishingType = 4;
             }
             else if (Touching_Special5)
             {
-                Special_Fish5 += 1;
+                Fishing.fishingType = 5;
             }
             Changing_Capacity();
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString("N3") + "/" + Max_Capacity_t.ToString() + " t";
+            PlayerPrefs.SetFloat("Position_X", boat.transform.position.x);
+            PlayerPrefs.SetFloat("Position_Y", boat.transform.position.y);
+            SceneManager.LoadScene(10);
         }
     }
     public void Heavy_Fishing()
@@ -1059,27 +1104,29 @@ public class Controller_Script : MonoBehaviour
         {
             if (Touching_Heavy1)
             {
-                Heavy_Fish1 += 1;
+                Fishing.fishingType = 6;
             }
             else if (Touching_Heavy2)
             {
-                Heavy_Fish2 += 1;
+                Fishing.fishingType = 7;
             }
             else if (Touching_Heavy3)
             {
-                Heavy_Fish3 += 1;
+                Fishing.fishingType = 8;
             }
             else if (Touching_Heavy4)
             {
-                Heavy_Fish4 += 1;
+                Fishing.fishingType = 9;
             }
             else if (Touching_Heavy5)
             {
-                Heavy_Fish5 += 1;
+                Fishing.fishingType = 10;
             }
             Changing_Capacity();
-
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString("N0") + "/" + Max_Capacity_t.ToString() + " t";
+            PlayerPrefs.SetFloat("Position_X", boat.transform.position.x);
+            PlayerPrefs.SetFloat("Position_Y", boat.transform.position.y);
+            SceneManager.LoadScene(10);
         }
     }
     public void Whale_Fishing()
@@ -1088,19 +1135,21 @@ public class Controller_Script : MonoBehaviour
         {
             if (Touching_Whale1)
             {
-                Whale_Fish1 += 1;
+                Fishing.fishingType = 11;
             }
             else if (Touching_Whale2)
             {
-                Whale_Fish2 += 1;
+                Fishing.fishingType = 12;
             }
             else if (Touching_Whale3)
             {
-                Whale_Fish3 += 1;
+                Fishing.fishingType = 13;
             }
             Changing_Capacity();
-
             _Capacity.GetComponent<Text>().text = "Capacity " + Actual_Capacity_t.ToString("N0") + "/" + Max_Capacity_t.ToString() + " t";
+            PlayerPrefs.SetFloat("Position_X", boat.transform.position.x);
+            PlayerPrefs.SetFloat("Position_Y", boat.transform.position.y);
+            SceneManager.LoadScene(10);
         }
     }
     public void Time_()
@@ -1119,6 +1168,10 @@ public class Controller_Script : MonoBehaviour
                 Day.GetComponent<Text>().text = "Day " + Time_Day.ToString();
                 Food_On_day_Text.GetComponent<Text>().text = Food_On_Day + " Food On Day";
                 Checking_If_Dead();
+                if (Random.Range(1, 4) == 2)
+                {
+                    SpawnEnemy();
+                }
             }
             Constant_Time.GetComponent<Text>().text = Time_Hour + ":00";
         }
@@ -1129,7 +1182,7 @@ public class Controller_Script : MonoBehaviour
         Changing_Capacity();
         if (Actual_Capacity_t <= Max_Capacity_t)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(9);
         }
     }
     void Leaving_Island()
@@ -1255,10 +1308,6 @@ public class Controller_Script : MonoBehaviour
             Button_Basic_Fishing.SetActive(false);
         }
     }
-
-
-
-
     //island
     public void Show_Stuff()
     {
@@ -1271,7 +1320,6 @@ public class Controller_Script : MonoBehaviour
             Weapons_Stuff.SetActive(false);
             Materials_Stuff.SetActive(false);
             Fishes_Stuff.SetActive(false);
-            Buing_Boat.SetActive(true);
 
             //lvl1, island 5
             if (SceneManager.GetActiveScene().buildIndex == 6 & Boat_Level == 0)
@@ -1299,9 +1347,13 @@ public class Controller_Script : MonoBehaviour
                 Lvl5_Button.SetActive(true);
             }
             //lvl6, island 7
-            else if (SceneManager.GetActiveScene().buildIndex == 8 & Boat_Level == 5)
+            else if (SceneManager.GetActiveScene().buildIndex == 8)
             {
-                Lvl6_Button.SetActive(true);
+                Buing_Boat.SetActive(true);
+                if (Boat_Level == 5)
+                {
+                    Lvl6_Button.SetActive(true);
+                }
             }
             //lvl7, main island
             else if (SceneManager.GetActiveScene().buildIndex == 1 & Boat_Level == 6)
@@ -1318,9 +1370,11 @@ public class Controller_Script : MonoBehaviour
         {
             Market_Menu.SetActive(false);
             Button_Market2.SetActive(false);
-            Buing_Boat.SetActive(true);
             Button_Market.SetActive(true);
-            Buing_Boat.SetActive(false);
+            if (SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                Buing_Boat.SetActive(false);
+            }
         }
 
     }
@@ -1392,6 +1446,8 @@ public class Controller_Script : MonoBehaviour
         {
             Money += Buing_Price;
             Number_Of_Boat -= 1;
+            Boat_Power -= 100;
+            Constant_Level.GetComponent<Text>().text = "MAX level, " + Number_Of_Boat + " boats";
         }
         if (Buing_Item == "Bread" & Bread >= 1)
         {
@@ -1617,7 +1673,6 @@ public class Controller_Script : MonoBehaviour
         }
 
         Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
-        Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
     }
     public void Buy()
     {
@@ -1627,6 +1682,8 @@ public class Controller_Script : MonoBehaviour
             {
                 Money -= Buing_Price;
                 Number_Of_Boat += 1;
+                Boat_Power += 100;
+                Constant_Level.GetComponent<Text>().text = "MAX level, " + Number_Of_Boat + " boats";
             }
             if (Buing_Item == "Bread" & Money >= Buing_Price)
             {
@@ -1852,8 +1909,6 @@ public class Controller_Script : MonoBehaviour
                 Whale_Fish3 += 1;
             }
             Constant_Money.GetComponent<Text>().text = Money.ToString() + " coins";
-            Constant_Level.GetComponent<Text>().text = Boat_Level.ToString() + " level";
-
         }
     }
     public void _Buing_Item(string item)
@@ -2913,47 +2968,53 @@ public class Controller_Script : MonoBehaviour
     {
         if (Boat_Level == 0 & Money >= 1000)
         {
-            Money -= 1000;
+            Money -= 500;
             Boat_Level = 1;
             Max_Capacity_t = 3;
+            Boat_Power = 20;
             Lvl1_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 1 & Money >= 5000)
         {
-            Money -= 5000;
+            Money -= 1000;
             Boat_Level = 2;
             Max_Capacity_t = 10;
+            Boat_Power = 40;
             Lvl2_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 2 & Money >= 10000)
         {
-            Money -= 10000;
+            Money -= 2000;
             Boat_Level = 3;
             Max_Capacity_t = 50;
+            Boat_Power = 60;
             Lvl3_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 3 & Money >= 50000)
         {
-            Money -= 50000;
+            Money -= 5000;
             Boat_Level = 4;
+            Boat_Power = 70;
             Lvl4_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 4 & Money >= 100000)
         {
-            Money -= 100000;
+            Money -= 10000;
             Boat_Level = 5;
-            Boat_Force = Boat_Force * 2;
+            Boat_Force = 1;
+            Boat_Power = 80;
             Lvl5_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 5 & Money >= 500000)
         {
-            Money -= 500000;
+            Money -= 20000;
             Boat_Level = 6;
+            Boat_Power = 100;
             Lvl6_Button.gameObject.SetActive(false);
         }
         else if (Boat_Level == 6 & Money >= 1000000)
         {
-            Money -= 1000000;
+            Money -= 50000;
             Boat_Level = 7;
             Lvl7_Button.gameObject.SetActive(false);
         }
@@ -2967,12 +3028,14 @@ public class Controller_Script : MonoBehaviour
             Time_Element = Time_Element * 400;
             Boat_Force = Boat_Force * 400;
             random1 = true;
+            EnemyShip.Increase();
         }
         else if (random1)
         {
             Time_Element = Time_Element / 400;
             Boat_Force = Boat_Force / 400;
             random1 = false;
+            EnemyShip.Decrease();
         }
     }
     public void Show_Pub()
@@ -2987,7 +3050,6 @@ public class Controller_Script : MonoBehaviour
             Panel_Pub.SetActive(false);
             random2 = false;
         }
-
     }
     public void Take_Poeple_On_Boat()
     {
@@ -3026,12 +3088,34 @@ public class Controller_Script : MonoBehaviour
         if (Time_Hour > 20 | Time_Hour < 7)
         {
             State_Day = false;
-            How_Many_Soldiers = 5;
+            How_Many_Soldiers = 3;
         }
         else
         {
             State_Day = true;
-            How_Many_Soldiers = 10;
+            How_Many_Soldiers = 7;
+        }
+    }
+    public void RestertPosition()
+    {
+        PlayerPrefs.SetFloat("Position_X", 0);
+        PlayerPrefs.SetFloat("Position_Y", 0);
+    }
+    void SpawnEnemy()
+    {
+        Instantiate(enemyShip, transform.position = new Vector3(2100, 875, -2), transform.rotation);
+    }
+    public void Repair_Boat()
+    {
+        int difference = (Number_Of_Boat * 100) - Boat_Power;
+        Debug.Log(difference);
+        while(Money> difference & difference >0)
+        {
+            Money -= 800;
+            difference--;
+            Boat_Power++;
+            Debug.Log(Boat_Power);
+            Add_Constanst();
         }
     }
 }

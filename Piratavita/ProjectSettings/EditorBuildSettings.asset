@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sea.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Menu.unity
+    guid: b04870cbccc510c498579c372aa1b731
   - enabled: 1
     path: Assets/Scenes/Main_Island.unity
     guid: bcca65a6076b03f4982b2b65529d6176
@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Island 7.unity
     guid: 5b31965c730264949b1ff9c957124737
+  - enabled: 1
+    path: Assets/Scenes/Sea.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Fishing.unity
+    guid: d8bf526701af7b941bd9be44be1051b4
   m_configObjects: {}
